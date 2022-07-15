@@ -1,0 +1,33 @@
+@mixin devices ($breakpoint) { //the name of the mixin is devices
+  
+    @if $breakpoint == phone {    
+        @media only screen and (max-width: 599px) {
+            @content;
+    }
+  }
+ 
+  @if $breakpoint == tablet {
+    @media only screen and (min-width: 600px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tablet_landscape {
+    @media only screen and (min-width: 900px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop_lg {
+    @media only screen and (min-width: 1800px) {
+      @content;
+    }
+  }
+}
+
