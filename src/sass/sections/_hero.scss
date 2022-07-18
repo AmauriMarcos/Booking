@@ -1,0 +1,23 @@
+@import '../abstracts/_all.scss';
+.hero{
+    height: 240px;
+    width: 100%;
+    background-color: $base-color;
+    color: $light;
+    @include center-vertical;
+
+    .heroContainer{
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        
+        .title{
+            font-size: 5rem;
+        }
+
+        .subtitle{
+            font-size: 2.4rem;
+          
+        }
+    }
+}
