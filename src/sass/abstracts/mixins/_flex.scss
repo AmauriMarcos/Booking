@@ -5,7 +5,7 @@
 
 @mixin center-horizontal(){
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
 @mixin center(){

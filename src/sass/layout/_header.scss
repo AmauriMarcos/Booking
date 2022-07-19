@@ -1,0 +1,51 @@
+@import '../abstracts/_all.scss';
+
+.header{
+    background-color: $base-color;
+    width: 100%;
+    color: $light;
+    
+    .headerContainer{
+        max-width: 1140px;
+        padding: 8px 0 12px;
+        margin: 0 auto;
+
+        & .list{
+            @include center-vertical;
+            justify-content: flex-start;
+            
+            .item{
+                @include center-vertical;
+                margin-right: 2rem;
+                cursor: pointer;
+                padding: 1.3rem 1.8rem;
+              
+
+                &:hover {
+                    background-color: #0071c23b;
+                    padding: 1.3rem 1.8rem;
+                    border-radius: 2rem;
+              
+                }
+
+                &:first-child{
+                    border: 1px solid $light;
+                    padding: 1.3rem 1.8rem;
+                    border-radius: 2.5rem;
+                    background-color: #0071c23b;;
+                }
+
+                .icon{
+                    width: 2rem;
+                    height: 2rem;
+                    margin-right: .5rem;
+                    
+                }
+
+                .text{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}

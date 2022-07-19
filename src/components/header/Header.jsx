@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../sass/components/_header.scss';
+import '../../sass/layout/_header.scss';
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
 import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
 import TimeToLeaveOutlinedIcon from '@mui/icons-material/TimeToLeaveOutlined';

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../sass/components/_navbar.scss";
+import "../../sass/layout/_navigation.scss";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
