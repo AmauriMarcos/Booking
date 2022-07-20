@@ -20,6 +20,31 @@
     border-right: 0.4rem solid $second-color;
     @include center-vertical;
     color: $dark;
+    cursor: pointer;
+    position: relative;
+
+    .options{
+        height: 300px;
+        width: 350px;
+        background-color: gray;
+        position: absolute;
+        border-radius: 5px;
+        padding: 10px;
+        top: 5rem;
+        right: 0;
+      }
+
+    .calendar{
+        position: absolute;
+        top: 5rem;
+        left: 0;
+    }
+
+    .date{
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: $dark;
+    }
 
     .input{
         border: none;
@@ -42,6 +67,7 @@
         height: 2.3rem;
     }
   }
+
 
   & .searchBarItem:first-child {
     flex: 4;
@@ -72,4 +98,6 @@
     font-size: 1.8rem;
     font-weight: 600;
   }
+
+ 
 }
