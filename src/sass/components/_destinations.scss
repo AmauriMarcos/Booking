@@ -1,0 +1,71 @@
+@import '../abstracts/_all.scss';
+
+.destinations{
+    width: 100%;
+    max-width: 1140px;
+    margin: 3rem auto 0;
+
+    .title{
+        @include title(2.3rem);
+    }
+
+    .destionationsContainer{
+
+
+        .btnGroup{
+            display: flex;
+            gap: 1rem;
+            margin: 2.5rem 0;
+
+            button{
+                border: none;
+                padding: 1.3rem 1.8rem;
+                background-color: transparent;
+                cursor: pointer;
+                font-weight: 600;
+
+                &:first-child{
+                    border: 1px solid $base-color-light;
+                    border-radius: 2.5rem;
+                    background-color: #F0F7FB;
+                    color: #0071C4;
+                   
+                }
+
+                &:not(:first-child):hover{
+                    border-radius: 2.5rem;
+                    background-color: rgb(233, 233, 233);                   
+                }
+            }
+        }
+
+        
+
+        .list{
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 3rem;
+
+            .item{
+                width: 20.7rem;
+                cursor: pointer;
+
+              
+
+                .name{
+                    @include title(1.4rem);
+                    &:hover{
+                        color: #0071C4;
+                    }
+                }
+
+                .numberOfProperties{
+                    @include description(0);
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}

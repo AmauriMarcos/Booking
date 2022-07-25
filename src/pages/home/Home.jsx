@@ -5,6 +5,9 @@ import Header from '../../components/header/Header';
 import Hero from '../../components/hero/Hero';
 import Featured from '../../components/featured/Featured';
 import Explore from '../../components/explore/Explore';
+import Properties from './../../components/properties/Properties';
+import Destinations from '../../components/destinations/Destinations';
+import Newsletter from '../../components/newsletter/Newsletter';
 
 const Home = () => {
   return (
@@ -15,6 +18,9 @@ const Home = () => {
       <div className="homeContainer">
         <Explore/>
         <Featured/>
+        <Properties/>
+        <Destinations/>
+        <Newsletter/>
       </div>
     </div>
   )

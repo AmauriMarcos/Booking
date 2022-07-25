@@ -47,6 +47,7 @@
 
         .properties {
             @include description(2rem);
+            margin-top: 0;
         }
       }
     }

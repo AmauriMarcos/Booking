@@ -1,0 +1,53 @@
+@import '../abstracts/_all.scss';
+
+.newsletter{
+    width: 100%;
+    height: 25.4rem;
+    background-color: $base-color-dark;
+    @include center;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 2rem 0;
+
+    .newsletterTitle{
+        color: $light;
+        font-weight: 300;
+        font-size: 2.4rem;
+    }
+    
+    .newsletterDescription{
+        color: rgb(211, 211, 211);
+        font-size: 1.6rem;
+    }
+
+    .form{
+        @include center-vertical;
+        gap: .5rem;
+        margin-top: 2rem;
+
+        .input{
+            border: none;
+            border-radius: .3rem;
+            padding: 1.5rem 1.1rem;
+            width: 34.9rem;
+        }
+
+        .submitButton{
+            background-color: $base-color-light;
+            border: none;
+            color: $light;
+            border-radius: .3rem;
+            outline: none;
+            font-size: 1.7rem;
+            @include center;
+            width: 14.7rem;
+            height: 4.6rem;
+            font-weight: 300;
+            
+        }
+    }
+
+    ::placeholder{
+        font-size: 1.6rem;
+    }
+}
