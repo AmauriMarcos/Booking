@@ -1,0 +1,13 @@
+
+@mixin title($size){
+    font-size: $size;
+    color: $dark;
+    font-weight: 600;
+}
+
+@mixin description($margin){
+    font-size: 1.6rem;
+    color: $gray;
+    font-weight: normal;
+    margin-bottom: $margin;
+}

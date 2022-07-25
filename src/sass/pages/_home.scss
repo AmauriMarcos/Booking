@@ -1,0 +1,7 @@
+@import '../abstracts/_all.scss';
+
+.homeContainer{
+    @include center;
+    flex-direction: column;
+    gap: 3rem;
+}
