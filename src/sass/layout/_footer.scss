@@ -1,0 +1,77 @@
+@import "../abstracts/_all.scss";
+
+.footer {
+  width: 100%;
+  margin: 0 auto;
+  transform: translateY(-3.1rem);
+
+  .footerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .top {
+      background-color: $base-color;
+      width: 100%;
+      @include center;
+      height: 5.8rem;
+      
+      &__button {
+        @include propertyButton;
+        padding: .6rem 1.5rem;
+        font-size: 1.3rem;
+      }
+    }
+
+    .middle {
+      width: 100%;
+      background-color: $base-color;
+
+      &__list {
+         width: 100%;
+         max-width: 114rem;
+         display: flex;
+         align-items: center;
+         height: 4.4rem;
+         margin: 0 auto;
+
+        li {
+            margin-right: 2rem;     
+
+          a {
+            text-decoration: underline;
+            color: $light;
+            font-weight: 600;
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      max-width: 114rem;
+      display: flex;
+      background-color: $light;
+      padding-top: 2rem;
+
+      &__list {
+        width: 100%;      
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: .7rem;
+
+        .item {
+          color: $base-color-lighter;
+          font-size: 1.3rem;
+          cursor:  pointer;
+
+          &:hover {
+            color: $second-color;
+          }
+        }
+      }
+    }
+  }
+}

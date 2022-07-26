@@ -8,6 +8,7 @@ import Explore from '../../components/explore/Explore';
 import Properties from './../../components/properties/Properties';
 import Destinations from '../../components/destinations/Destinations';
 import Newsletter from '../../components/newsletter/Newsletter';
+import Footer from '../../components/footer/Footer';
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         <Properties/>
         <Destinations/>
         <Newsletter/>
+        <Footer/>
       </div>
     </div>
   )

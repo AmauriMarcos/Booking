@@ -88,17 +88,7 @@
         align-items: center;
 
         & .listYourPropertyBtn {
-          border: 0.1rem solid  $light;
-          border-radius: 3px;
-          display: flex;
-          justify-self: flex-end;
-          align-items: center;
-          background-color: transparent;
-          cursor: pointer;
-
-          &:hover {
-            background-color: rgba(32, 88, 167, 0.9);
-          }
+          @include propertyButton;
 
           & span {
             border: none;

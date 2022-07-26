@@ -1,4 +1,4 @@
-
+/* Title and subtitles */
 @mixin title($size){
     font-size: $size;
     color: $dark;
@@ -10,4 +10,21 @@
     color: $gray;
     font-weight: normal;
     margin-bottom: $margin;
+}
+
+/* Buttons */
+
+@mixin propertyButton() {
+    border: 0.1rem solid  $light;
+    border-radius: 3px;
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+    color: $light;
+
+    &:hover {
+    background-color: rgba(32, 88, 167, 0.9);
+    }
 }
