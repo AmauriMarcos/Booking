@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./../../components/navbar/Navbar";
 import Header from "./../../components/header/Header";
 import "../../sass/pages/_list.scss";
+/* import { DateRange } from "react-date-range"; */
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import OptionsBox from "../../components/optionsBox/OptionsBox";
 import SearchIcon from "@mui/icons-material/Search";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import { useSelector } from "react-redux";
 
 const List = () => {
+  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const search = useSelector((state) => state.search.options);
+ console.log(search);
   return (
     <div className="list">
       <Navbar />
@@ -55,25 +60,33 @@ const List = () => {
               </div>
 
               <div className="item">
-                <div className="wrapper">
-                  <p>1 adult - 0 children - 1 room</p>
+                <div
+                  className="wrapper"
+                  onClick={() => setIsOptionsOpen(!isOptionsOpen)}
+                >
+                  <p>
+                    {search[0]?.qtd} adults - {search[1]?.qtd} children -{" "}
+                    {search[2]?.qtd} room
+                  </p>
                   <KeyboardArrowDownIcon className="arrowIcon" />
                 </div>
+
+                {isOptionsOpen && <OptionsBox type="list" />}
               </div>
 
-              <div className="options">
-                <div className="optionsWrapper">
-                  <div className="optionsSelector">
-                  <input type="checkbox" className="checkbox"/>
+              <div className="smallFilterSelection">
+                <div className="smallFilterSelectionWrapper">
+                  <div className="smallFilterSelectionSelector">
+                    <input type="checkbox" className="checkbox" />
                     <p>Entire homes & apartments</p>
                   </div>
 
-                  <HelpOutlineOutlinedIcon  className="questionIcon"/>
+                  <HelpOutlineOutlinedIcon className="questionIcon" />
                 </div>
 
-                <div className="optionsWrapper">
-                  <div className="optionsSelector">
-                    <input type="checkbox" className="checkbox"/>
+                <div className="smallFilterSelectionWrapper">
+                  <div className="smallFilterSelectionSelector">
+                    <input type="checkbox" className="checkbox" />
                     <p>I'm traveling for work</p>
                   </div>
                   <HelpOutlineOutlinedIcon className="questionIcon" />
@@ -85,7 +98,6 @@ const List = () => {
               </button>
             </form>
           </div>
-
           <div className="listResult"></div>
         </div>
       </div>

@@ -29,6 +29,8 @@
           width: 100%;
 
           .item {
+            position: relative;
+            
             p {
               font-size: 1.3rem;
             }
@@ -83,18 +85,19 @@
             }
           }
 
-          .options{
+          .smallFilterSelection{
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 1rem;
+           
 
-             .optionsWrapper{
+             .smallFilterSelectionWrapper{
                 @include center-vertical;
                 justify-content: space-between;
                 
-                .optionsSelector{
+                .smallFilterSelectionSelector{
                     @include center-vertical;
                     
 
