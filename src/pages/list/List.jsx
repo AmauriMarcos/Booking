@@ -98,7 +98,10 @@ const List = () => {
               </button>
             </form>
           </div>
-          <div className="listResult"></div>
+
+          <div className="listResult">
+             Results
+          </div>
         </div>
       </div>
     </div>
