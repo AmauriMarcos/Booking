@@ -6,9 +6,12 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { format, locale } from "date-fns";
+import { format } from "date-fns";
+import OptionsBox from "../optionsBox/OptionsBox";
+import {useSelector} from 'react-redux';
 
 const SearchBar = () => {
+  const search = useSelector((state) => state.search.options)
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -17,26 +20,9 @@ const SearchBar = () => {
     },
   ]);
 
-
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
-  const [options, setOptions] = useState({
-    adults: 1,
-    children: 0,
-    rooms: 1,
-  });
-
-  const handleOption = (name, action) => {
-    setOptions((prevState) => {
-      return {
-        ...prevState,
-        [name]: action === "increment" ? options[name] + 1 : options[name] - 1,
-      };
-    });
-  };
-
-  
   return (
     <div className="searchBar">
       <div className="searchBarItem">
@@ -81,68 +67,17 @@ const SearchBar = () => {
       </div>
       <div className="searchBarItem">
         <PersonOutlineOutlinedIcon className="icon" />
-        <span onClick={() => setIsOptionsOpen(!isOptionsOpen)} className="text">{`${options.adults} adults - ${options.children} children - ${options.rooms} room`}</span>
-        {isOptionsOpen && <div className="options">
-          <div className="optionItem">
-            <span>Adults</span>
-            <div className="optionSelect">
-              <button
-                onClick={() => handleOption("adults", "decrement")}
-                className={`${options.adults <= 1 ? "btn notAllowed" : "btn"}`}
-                disabled={options.adults <= 1 ? true : false}
-              >
-                -
-              </button>
-              <p>{options.adults}</p>
-              <button
-                onClick={() => handleOption("adults", "increment")}
-                className="btn"
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="optionItem">
-            <span>Children</span>
-            <div className="optionSelect">
-              <button
-                onClick={() => handleOption("children", "decrement")}
-                className={`${
-                  options.children <= 0 ? "btn notAllowed" : "btn"
-                }`}
-                disabled={options.children <= 0 ? true : false}
-              >
-                -
-              </button>
-              <p>{options.children}</p>
-              <button
-                onClick={() => handleOption("children", "increment")}
-                className="btn"
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="optionItem">
-            <span>Rooms</span>
-            <div className="optionSelect">
-              <button
-                onClick={() => handleOption("rooms", "decrement")}
-                className={`${options.rooms <= 1 ? "btn notAllowed" : "btn"}`}
-                disabled={options.rooms <= 1 ? true : false}
-              >
-                -
-              </button>
-              <p>{options.rooms}</p>
-              <button
-                onClick={() => handleOption("rooms", "increment")}
-                className="btn"
-              >
-                +
-              </button>
-            </div>
-          </div>
-        </div>}
+        <span
+          onClick={() => setIsOptionsOpen(!isOptionsOpen)}
+          className="text"
+        >
+          {
+            `${search[0]?.qtd} adults - 
+             ${search[1]?.qtd} children - 
+             ${search[2]?.qtd} room`
+          }
+        </span>
+        {isOptionsOpen && <OptionsBox />}
       </div>
       <button className="button">Search</button>
     </div>
