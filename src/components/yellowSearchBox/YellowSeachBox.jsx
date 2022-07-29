@@ -7,7 +7,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useSelector } from "react-redux";
 import '../../sass/components/_yellowSearchBox.scss';
 
-const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen}) => {
+const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type}) => {
   const search = useSelector((state) => state.search.options);
 
   const submit = (e) => {
@@ -15,7 +15,7 @@ const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen}) => {
   };
 
   return (
-    <div className="listSearch">
+    <div className={type === "hotel" ? "listSearch noSticky" : "listSearch"}>
       <h1 className="title">Search</h1>
       <form className="form" onSubmit={submit}>
         <div className="item">

@@ -1,30 +1,71 @@
 /* Title and subtitles */
-@mixin title($size){
-    font-size: $size;
-    color: $dark;
-    font-weight: 600;
+@mixin title($size) {
+  font-size: $size;
+  color: $dark;
+  font-weight: 600;
 }
 
-@mixin description($margin){
-    font-size: 1.6rem;
-    color: $gray;
-    font-weight: normal;
-    margin-bottom: $margin;
+@mixin description($margin) {
+  font-size: 1.6rem;
+  color: $gray;
+  font-weight: normal;
+  margin-bottom: $margin;
 }
 
 /* Buttons */
 
 @mixin propertyButton() {
-    border: 0.1rem solid  $light;
-    border-radius: 3px;
-    display: flex;
-    justify-self: flex-end;
-    align-items: center;
-    background-color: transparent;
-    cursor: pointer;
-    color: $light;
+  border: 0.1rem solid $light;
+  border-radius: 3px;
+  display: flex;
+  justify-self: flex-end;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  color: $light;
 
-    &:hover {
+  &:hover {
     background-color: rgba(32, 88, 167, 0.9);
-    }
+  }
+}
+
+/* Badges*/
+
+@mixin smallGreenBadge() {
+  background-color: #008009;
+  font-size: 1.2rem;
+  color: $light;
+  border-radius: 0.2rem;
+  padding: 0.4rem;
+  @include center;
+  margin: 1rem 0 1.5rem;
+}
+
+@mixin prefferedPropertyYellowBadgeBox() {
+  background-color: $second-color;
+  @include center;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  width: 5rem;
+}
+
+@mixin prefferedPropertyYellowBadgeIcon() {
+  color: $light;
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+/*Rating*/
+
+@mixin starsBox() {
+  color: $dark;
+  width: 100%;
+  align-self: center;
+  margin-left: 0.4rem;
+}
+
+@mixin starsIcon() {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: $second-color;
 }

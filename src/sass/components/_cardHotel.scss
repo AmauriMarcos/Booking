@@ -44,36 +44,21 @@
           @include center-vertical;
         
           .stars {
-            color: $dark;
-            width: 100%;
-            align-self: center;
-            margin-left: 0.4rem;
-       
-  
-            .star-outer {
-              width: 1.50rem;
-              height: 1.50rem;
-              fill: $second-color;
-              
+            @include starsBox;    
+
+            .starIcon {
+              @include starsIcon;
             }
           }
   
           .prefferedProperty {
-            background-color: $second-color;
-            @include center;
-            border-radius: 0.2rem;
-            padding: .3rem;
-            width: 5rem;
+            @include prefferedPropertyYellowBadgeBox;
   
             .icon {
-              color: $light;
-              width: 1.45rem;
-              height: 1.45rem;
+              @include prefferedPropertyYellowBadgeIcon;
             }
           }
-        }
-
-        
+        }       
       }
 
       .information {
@@ -178,13 +163,7 @@
         }
 
         .credit {
-          background-color: #008009;
-          font-size: 1.2rem;
-          color: $light;
-          border-radius: 0.2rem;
-          padding: 0.4rem;
-          @include center;
-          margin: 1rem 0 1.5rem;
+          @include smallGreenBadge;
         }
 
         .button {

@@ -7,6 +7,8 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import YellowSearchBox from '../../components/yellowSearchBox/YellowSeachBox';
 import {useSelector} from 'react-redux';
 import CardHotel from "../../components/cardHotel/CardHotel";
+import Newsletter from "../../components/newsletter/Newsletter";
+import Footer from "../../components/footer/Footer";
 
 const List = () => {
   const hotels = useSelector((state) => state.hotel.hotels);
@@ -36,6 +38,8 @@ const List = () => {
           </div>
         </div>
       </div>
+      <Newsletter/>
+      <Footer/>
     </div>
   );
 };

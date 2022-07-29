@@ -30,11 +30,3 @@ const searchSlice = createSlice({
 export const { increment, decrement } = searchSlice.actions;
 export default searchSlice.reducer;
 
-/* const handleOption = (name, action) => {
-    setOptions((prevState) => {
-      return {
-        ...prevState,
-        [name]: action === "increment" ? options[name] + 1 : options[name] - 1,
-      };
-    });
-  }; */
