@@ -20,6 +20,7 @@ import Footer from "./../../components/footer/Footer";
 import Newsletter from "./../../components/newsletter/Newsletter";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -39,39 +40,51 @@ const Hotel = () => {
     setIsSlideOpen(true);
   };
 
-/*   const closeBackSlide = (e) => {
-    e.stopPropagation();
-    setIsSlideOpen(false);
-  } */
+ function closeSlider(e){
+ 
+  setIsSlideOpen(false);
+  e.stopPropagation()
+  e.nativeEvent.stopImmediatePropagation();
+ 
+ }
+
+
+ let lastIndex = hotel[0]?.gallery.length -1;
  const forward = () => {
-  setSlideNumber(slideNumber + 1);
+  setSlideNumber(slideNumber === lastIndex ? 0 : slideNumber + 1 );
  }
  const back = () => {
-  setSlideNumber(slideNumber - 1);
+  setSlideNumber(slideNumber === 0 ? lastIndex : slideNumber - 1);
  }
+
   return (
     <div className="hotel">
       <Navbar />
       <Header />
-      
-      {isSlideOpen && (<div className="backSlide" >
-        <div className="slideButton">
-          <ArrowBackIosIcon onClick={() => back()} className="icon" />
-        </div>
-        <div className="slider">
-            <img
-              className="img"
-              src={hotel[0]?.gallery[slideNumber]}
-              alt="hotel"
-            />
-        </div>
-        <div className="slideButton">
-          <ArrowForwardIosIcon onClick={() => forward()} className="icon"/>
-        </div>
-      </div>)}
-      
+         
 
       <div className="hotelContainer">
+      {isSlideOpen && (<div className="backSlide" > 
+      <div onClick={(e) => closeSlider(e)} className="closeButton">
+        <CloseIcon className="icon" />
+      </div>
+      <div className="slideButton left" onClick={() => back()}>
+        <ArrowBackIosIcon className="icon" />
+      </div>
+      <div className="slider">
+          <img
+            className="img"
+            src={hotel[0]?.gallery[slideNumber]}
+            alt="hotel"
+          />
+      </div>
+      <div className="slideButton" onClick={() => forward()}>
+        <ArrowForwardIosIcon  className="icon"/>
+      </div>
+      </div>)}
+      
+      
+
         <div className="searchAndGallery">
           <div className="search">
             <YellowSeachBox type="hotel" />
