@@ -5,7 +5,7 @@ import YellowSeachBox from "../../components/yellowSearchBox/YellowSeachBox";
 import "../../sass/pages/_hotel.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getHotelById } from "../../features/hotelSlice";
+import { getHotel, getHotelById } from "../../features/hotelSlice";
 import StarIcon from "@mui/icons-material/Star";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
@@ -25,11 +25,15 @@ import CloseIcon from '@mui/icons-material/Close';
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isSlideOpen, setIsSlideOpen] = useState(false);
-  const hotel = useSelector((state) => state.hotel.uniqueHotel);
+ /*  const hotel = useSelector((state) => state.hotel.uniqueHotel); */
   const params = useParams();
   const dispatch = useDispatch();
   const { id } = params;
 
+  const getFakeHotel = () =>{
+    dispatch(getHotel(id))
+  }
+/* 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getHotelById(id));
@@ -46,24 +50,24 @@ const Hotel = () => {
   e.stopPropagation()
   e.nativeEvent.stopImmediatePropagation();
  
- }
+ } */
 
 
- let lastIndex = hotel[0]?.gallery.length -1;
+/*  let lastIndex = hotel[0]?.gallery.length -1;
  const forward = () => {
   setSlideNumber(slideNumber === lastIndex ? 0 : slideNumber + 1 );
  }
  const back = () => {
   setSlideNumber(slideNumber === 0 ? lastIndex : slideNumber - 1);
- }
+ } */
 
   return (
     <div className="hotel">
       <Navbar />
       <Header />
-         
+          <button onClick={getFakeHotel}>Get Hotel</button>
 
-      <div className="hotelContainer">
+     {/*  <div className="hotelContainer">
       {isSlideOpen && (<div className="backSlide" > 
       <div onClick={(e) => closeSlider(e)} className="closeButton">
         <CloseIcon className="icon" />
@@ -208,7 +212,7 @@ const Hotel = () => {
             <button className="button">Reserve</button>
           </div>
         </div>
-      </div>
+      </div> */}
       <Newsletter />
       <Footer />
     </div>

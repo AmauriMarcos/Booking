@@ -24,9 +24,10 @@ app.get("/", (req, res) => {
 
 //middlewares
 app.use('/api/auth', authRoute);
+app.use('/api/users', usersRoute);
 app.use('/api/hotels', hotelsRoute);
 app.use('/api/rooms', roomsRoute);
-app.use('/api/users', usersRoute);
+
 
 
 app.listen(PORT, () => console.log(`App is running on port ${PORT}`));

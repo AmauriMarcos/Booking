@@ -2,7 +2,7 @@ import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
 //I'm using ES6 modules 
-//Because of that I need to import path and fileURLToPath from url 
+//because of that I need to import path and fileURLToPath from url 
 //to make __dirname works properly
 
 import path from 'path';
