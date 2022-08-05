@@ -14,11 +14,11 @@ const CardHotel = ({ hotel }) => {
       <div className="cardHotel">
         <div className="cardHotelContainer">
           <div className="left">
-            <img className="img" src={hotel.url} alt={hotel.name} />
+            <img className="img" src={hotel.hotelURL} alt={hotel.hotelName} />
           </div>
           <div className="middle">
             <div className="header">
-              <h1 className="title">{hotel.name}</h1>
+              <h1 className="title">{hotel.hotelName}</h1>
 
               <div className="icons">
                 <div className="stars ">
@@ -35,8 +35,8 @@ const CardHotel = ({ hotel }) => {
             </div>
             <div className="information">
               <div className="accomodation">
-                <h2 className="subtitle">{hotel.info.acommodation}</h2>
-                <p className="text">{hotel.info.rooms}</p>
+                <h2 className="subtitle">{hotel.typeOfAccommodation}</h2>
+                <p className="text">{hotel.roomDescription}</p>
               </div>
 
               <h2 className="subtitle green">Breakfast included</h2>
@@ -60,17 +60,17 @@ const CardHotel = ({ hotel }) => {
             <div className="review">
               <div className="overall">
                 <div className="wrapper">
-                  <h1 className="overallTitle">{hotel.evaluation.overall}</h1>
-                  <p className="numberOfReviews">{hotel.review.reviewQtd}</p>
+                  <h1 className="overallTitle">{hotel.customerOpinion}</h1>
+                  <p className="numberOfReviews">{hotel.reviewQuantity} reviews</p>
                 </div>
 
                 <div className="rating">
-                  <span className="ratingNumber">{hotel.review.rating}</span>
+                  <span className="ratingNumber">{hotel.reviewRating}</span>
                 </div>
               </div>
               <h2 className="impressionTitle">
-                {hotel.evaluation.installation.impression}{" "}
-                {hotel.evaluation.installation.rating}
+                {hotel.roomCustomerOpinion}{" "}
+                {hotel.roomRating}
               </h2>
             </div>
 

@@ -4,6 +4,7 @@ import axios from "axios";
 
 const initialState = {
   entities: [],
+  uniqueHotel: [],
   loading: false,
   error: '',
 };
@@ -61,7 +62,7 @@ const hotelSlice = createSlice({
       },
       [getHotel.fulfilled]: (state, {payload}) =>{
        state.loading = false
-       console.log(payload)
+       state.uniqueHotel = payload;
       },
       [getHotel.rejected]: (state) => {
         state.loading = false;
@@ -73,7 +74,7 @@ const hotelSlice = createSlice({
       },
       [getAllHotels.fulfilled]: (state, {payload}) =>{
        state.loading = false
-       console.log(payload)
+       state.entities = payload;
       },
       [getAllHotels.rejected]: (state) => {
         state.loading = false;

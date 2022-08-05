@@ -5,7 +5,7 @@ import YellowSeachBox from "../../components/yellowSearchBox/YellowSeachBox";
 import "../../sass/pages/_hotel.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getHotel, getHotelById } from "../../features/hotelSlice";
+import { getHotel} from "../../features/hotelSlice";
 import StarIcon from "@mui/icons-material/Star";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
@@ -25,18 +25,14 @@ import CloseIcon from '@mui/icons-material/Close';
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isSlideOpen, setIsSlideOpen] = useState(false);
- /*  const hotel = useSelector((state) => state.hotel.uniqueHotel); */
+  const hotelbyID = useSelector((state) => state.hotel.uniqueHotel);
   const params = useParams();
   const dispatch = useDispatch();
   const { id } = params;
 
-  const getFakeHotel = () =>{
-    dispatch(getHotel(id))
-  }
-/* 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getHotelById(id));
+    dispatch(getHotel(id));
   }, [id, dispatch]);
 
   const handleSlider = (index) => {
@@ -50,41 +46,45 @@ const Hotel = () => {
   e.stopPropagation()
   e.nativeEvent.stopImmediatePropagation();
  
- } */
+ }
+ 
+const {hotel, gallery} = hotelbyID
+console.log(hotel);
+let myGallery = [].concat.apply([], gallery);
 
 
-/*  let lastIndex = hotel[0]?.gallery.length -1;
- const forward = () => {
+ let lastIndex = myGallery?.length -1; 
+  const forward = () => {
   setSlideNumber(slideNumber === lastIndex ? 0 : slideNumber + 1 );
  }
  const back = () => {
   setSlideNumber(slideNumber === 0 ? lastIndex : slideNumber - 1);
- } */
+ } 
+
 
   return (
     <div className="hotel">
       <Navbar />
       <Header />
-          <button onClick={getFakeHotel}>Get Hotel</button>
-
-     {/*  <div className="hotelContainer">
+         
+      <div className="hotelContainer">
       {isSlideOpen && (<div className="backSlide" > 
       <div onClick={(e) => closeSlider(e)} className="closeButton">
         <CloseIcon className="icon" />
       </div>
       <div className="slideButton left" onClick={() => back()}>
         <ArrowBackIosIcon className="icon" />
-      </div>
-      <div className="slider">
+      </div> 
+       <div className="slider">
           <img
             className="img"
-            src={hotel[0]?.gallery[slideNumber]}
+            src={myGallery ? myGallery[slideNumber].imageURL : ''}
             alt="hotel"
           />
-      </div>
+      </div> 
       <div className="slideButton" onClick={() => forward()}>
         <ArrowForwardIosIcon  className="icon"/>
-      </div>
+      </div> 
       </div>)}
       
       
@@ -97,7 +97,7 @@ const Hotel = () => {
           <div className="gallery">
             <div className="galleryHeader">
               <div className="galleryHeaderLeft">
-                <div className="acomodation">{hotel[0]?.info.acommodation}</div>
+                {hotel && <div className="acomodation">{hotel[0]?.typeOfAccommodation}</div>}
 
                 <div className="icons">
                   <div className="stars ">
@@ -119,14 +119,19 @@ const Hotel = () => {
                 <button className="button">Reserve</button>
               </div>
             </div>
-
-            <h2 className="title">{hotel[0]?.name}</h2>
-            <p className="text">{hotel[0]?.address}</p>
+            
+            {hotel && (
+              <>
+                <h2 className="title">{hotel[0]?.hotelName}</h2>
+                <p className="text">{hotel[0]?.address}</p> 
+              </>
+            )}
+            
             <div className="photos">
-              {hotel[0]?.gallery.map((photo, i) => {
+              {myGallery && myGallery.map((photo, i) => {
                 return (
                   <div key={i} onClick={() => handleSlider(i)}>
-                    <img className="img" src={photo} alt="hotel" />
+                    <img className="img" src={photo?.imageURL} alt="hotel" />
                   </div>
                 );
               })}
@@ -212,7 +217,7 @@ const Hotel = () => {
             <button className="button">Reserve</button>
           </div>
         </div>
-      </div> */}
+      </div>
       <Newsletter />
       <Footer />
     </div>
