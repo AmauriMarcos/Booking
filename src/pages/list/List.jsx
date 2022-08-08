@@ -18,7 +18,9 @@ const List = () => {
 
   useEffect(() => {
     dispatch(getAllHotels())
-  }, [dispatch])
+  }, [dispatch]);
+
+  console.log(hotels)
 
   return (
     <div className="list">
@@ -32,14 +34,14 @@ const List = () => {
                 isOptionsOpen={isOptionsOpen}
                 setIsOptionsOpen={setIsOptionsOpen} 
               />
-              {hotels && <div className="listResult"  >
+          {/*     {hotels && <div className="listResult"  >
                 <h2>Australia: 14,710 properties found</h2>
                 {hotels.map((hotel) => {
                   return (
                     <CardHotel hotel={hotel} key={hotel.id} />
                   )
                 })}
-              </div>}
+              </div>} */}
             </div>
           </div>
         </div>

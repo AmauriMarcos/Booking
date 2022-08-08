@@ -1,88 +1,33 @@
 import express from "express";
 import db from "../config/mysql.js";
+import {createError} from '../utils/error.js';
+import createHotel from '../controllers/hotel/createHotel';
+import getHotelByID from '../controllers/hotel/getHotelById';
 const router = express.Router();
 
-//Create
-router.post("/", (req, res) => {
-  const {
-    hotelName,
-    stars,
-    price,
-    reviewQuantity,
-    reviewRating,
-    city,
-    address,
-    hotelURL,
-    customerOpinion,
-    typeOfAccommodation,
-    roomDescription,
-    roomRating,
-    roomCustomerOpinion,
-    freeCancelation,
-    breakfastIncluded,
-    preferredPlusProperty,
-    noPaymentNeeded,
-  } = req.body;
-  const q = `INSERT INTO hotels(hotelName,stars,price,
-                        reviewQuantity,reviewRating,city,address,hotelURL,
-                        customerOpinion,typeOfAccommodation,roomDescription,roomRating,
-                        roomCustomerOpinion,freeCancelation,breakfastIncluded,
-                        preferredPlusProperty,noPaymentNeeded)
-                VALUES("${hotelName}",${stars},${price},
-                        ${reviewQuantity},${reviewRating},"${city}","${address}","${hotelURL}",
-                        "${customerOpinion}","${typeOfAccommodation}","${roomDescription}",${roomRating},
-                       "${roomCustomerOpinion}",${freeCancelation},${breakfastIncluded},
-                       ${preferredPlusProperty},${noPaymentNeeded});`;
 
-  db.query(q, (err, data) => {
-    if (err) {
-      throw err;
-    }
-    res.send(data);
-  });
-});
+//Create
+router.post("/", createHotel);
 
 //Update
 //Delete
-//Get
-router.get("/:id", (req, res) => {
-  let arrayGallery = [];
-  const id = req.params.id;
-  const galleryQuery = ` SELECT imageURL FROM gallery
-                         WHERE hotelID=${id};`
-   db.query(galleryQuery, (err, data) => {
-    if (err) {
-      throw err;
-    }
-    return arrayGallery.push(data)
-  });
 
-
-  const hotelQuery = `SELECT * FROM hotels WHERE id=${id}`
-   db.query(hotelQuery, (err, data) => {
-    if (err) {
-      throw err;
-    }
-
-    let myJoinTableData = {
-      hotel: data,
-      gallery: arrayGallery
-    }
-
-    res.send(myJoinTableData);
-  })
-
-});
+//Get by ID
+router.get("/:id", getHotelByID);
 
 //Get all
-router.get("/", (req, res) => {
-  const q = `SELECT * FROM hotels`;
-  db.query(q, (err, data) => {
-    if (err) {
-      throw err;
-    }
-
-    res.send(data);
-  });
+router.get("/", (req, res, next) => {
+ 
+  try {
+    const q = `SELECT * FROM hotels`;
+    db.query(q, (err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.send(data);
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 export default router;
