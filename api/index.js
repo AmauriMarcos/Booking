@@ -5,6 +5,8 @@ import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 import usersRoute from './routes/users.js'
 import cors from 'cors';
+import cookieParser from 'cookie-parser'
+
 const app = express();
 const PORT = 8000;
 
@@ -23,6 +25,7 @@ app.get("/", (req, res) => {
 
 
 //middlewares
+app.use(cookieParser());
 app.use('/api/auth', authRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/hotels', hotelsRoute);

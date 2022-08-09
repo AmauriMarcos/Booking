@@ -1,4 +1,4 @@
-import db from '../../config/mysql';
+import db from '../../config/mysql.js';
 
 const getHotelByID = (req, res, next) => {
   let arrayGallery = [];

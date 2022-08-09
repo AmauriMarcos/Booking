@@ -1,4 +1,4 @@
-import db from "../../config/mysql";
+import db from "../../config/mysql.js";
 const createHotel = (req, res, next) => {
   const {
     hotelName,
