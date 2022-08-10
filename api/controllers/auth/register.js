@@ -2,9 +2,9 @@ import db from '../../config/mysql.js';
 import bcrypt from 'bcryptjs';
 
 const register = (req, res, next) => {
-    const {username, email, userPassword, isAdmin, avatar} = req.body;
+    const {username, email, password, isAdmin, avatar} = req.body;
     var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(userPassword, salt);
+    var hash = bcrypt.hashSync(password, salt);
 
     try{
         const q =  `INSERT INTO users(username, email, userPassword, isAdmin, avatar)

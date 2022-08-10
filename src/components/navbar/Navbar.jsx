@@ -2,13 +2,17 @@ import React from "react";
 import "../../sass/layout/_navigation.scss";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
   const isLoggedIn = false;
   return (
     <div className="navbar">
       <nav className="navHeader">
-        <span className="logo">Booking.com</span>
+        <Link to="/">
+          <span className="logo">Booking.com</span>
+        </Link>
+        
 
         <div className="group">
 
@@ -55,8 +59,14 @@ const Navbar = () => {
             <button className="listYourPropertyBtn" >
               <span>List your property</span>
             </button>
-            <button className="login-btn">Register</button>
-            <button className="login-btn">Sign In</button>
+
+            <Link to="/register">
+              <button className="login-btn">Register</button>
+            </Link>
+
+            <Link to="/login">
+              <button className="login-btn">Sign In</button>
+            </Link>
           </div>
 
         </div>

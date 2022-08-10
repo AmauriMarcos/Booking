@@ -10,39 +10,22 @@ import CardHotel from "../../components/cardHotel/CardHotel";
 import Newsletter from "../../components/newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
 import { getAllHotels } from './../../features/hotelSlice';
-import { register, login } from "../../features/userSlice";
 
 const List = () => {
   const hotels = useSelector((state) => state.hotel.entities);
-  const userInfo = useSelector((state) => state.user.entities);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false); 
   const dispatch = useDispatch();
-//username, email, userPassword, isAdmin, avatar
- const user = {
-  username: 'Julia',
-  email: 'julia@test.com',
-  userPassword: 'juj123',
-  isAdmin: false,
-  avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png'
-}
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getAllHotels())
   }, [dispatch]);
 
-  console.log(userInfo);
-
-  const fakeUserSubmit = () => {
-    dispatch(register(user))
-  }
-  const loginUser = () => {
-    dispatch(login(user.username))
-  }
+  
   return (
     <div className="list">
       <Navbar />
       <Header />
-      <button onClick={fakeUserSubmit}>Fake Submit User</button>
-      <button onClick={loginUser}>Login</button>
        <div className="listContainer">
         <div className="listWrapper">
           <div className="listContainer">

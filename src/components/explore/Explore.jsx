@@ -1,14 +1,16 @@
 import React from "react";
 import "../../sass/components/_explore.scss";
+import {Link} from 'react-router-dom';
 
 const Explore = () => {
   return (
+    
     <div className="explore">
       <div className="exploreTitle">
         <h1 className="title">Explore Australia</h1>
         <h2 className="subtitle">These popular destinations have a lot to offer</h2>
       </div>
-
+      <Link to="/hotels">
       <ul className="exploreList">
         <li className="item">
           <img
@@ -82,7 +84,9 @@ const Explore = () => {
           </div>
         </li>
       </ul>
+      </Link>
     </div>
+    
   );
 };
 
