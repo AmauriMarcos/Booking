@@ -1,10 +1,12 @@
 import express from "express";
-import {createError} from '../utils/error.js';
 import createHotel from '../controllers/hotel/createHotel.js';
 import getHotelByID from '../controllers/hotel/getHotelById.js';
 import getHotel from '../controllers/hotel/getHotel.js';
-const router = express.Router();
+import updateHotel from '../controllers/hotel/updateHotel.js';
+import deleteHotel from '../controllers/hotel/deleteHotel.js';
+import { verifyAdmin } from './../utils/verifyToken.js';
 
+const router = express.Router();
 
 //Get
 router.get("/", getHotel);
@@ -13,11 +15,13 @@ router.get("/", getHotel);
 router.get("/:id", getHotelByID);
 
 //Create
-router.post("/", createHotel);
+router.post("/", verifyAdmin, createHotel);
 
 //Update
-//Delete
+router.put("/:id", verifyAdmin, updateHotel);
 
+//Delete
+router.delete("/:id", verifyAdmin,  deleteHotel);
 
 
 export default router;

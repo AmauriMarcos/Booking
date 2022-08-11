@@ -49,9 +49,8 @@ const Hotel = () => {
  }
  
 const {hotel, gallery} = hotelbyID
-console.log(hotel);
-let myGallery = [].concat.apply([], gallery);
 
+let myGallery = [].concat.apply([], gallery);
 
  let lastIndex = myGallery?.length -1; 
   const forward = () => {

@@ -9,7 +9,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [isAdmin, setIsAdmin] = React.useState(true);
+  const [isAdmin, setIsAdmin] = React.useState(false);
   const [email, setEmail] = React.useState("");
 
   const submit = (e) => {
