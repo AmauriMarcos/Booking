@@ -1,11 +1,11 @@
 import db from "../../config/mysql.js";
 
-const deleteHotel = (req, res, next) => {
+const deleteProperty = (req, res, next) => {
   const id = req.params.id;
 
   try {
-    const hotelQuery = `DELETE FROM hotels WHERE id=${id}`;
-    db.query(hotelQuery, (err, data) => {
+    const propertyQuery = `DELETE FROM properties WHERE id=${id}`;
+    db.query(propertyQuery, (err, data) => {
       if (err) {
         throw err;
       }
@@ -16,4 +16,4 @@ const deleteHotel = (req, res, next) => {
   }
 };
 
-export default deleteHotel;
+export default deleteProperty;

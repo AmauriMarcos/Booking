@@ -1,16 +1,16 @@
 import db from "../../config/mysql.js";
 
-const updateHotel = (req, res, next) => {
+const updateProperty = (req, res, next) => {
   const id = req.params.id;
   const {
-    hotelName,
+    propertyName,
     stars,
     price,
     reviewQuantity,
     reviewRating,
     city,
     address,
-    hotelURL,
+    propertyURL,
     customerOpinion,
     typeOfAccommodation,
     roomDescription,
@@ -22,14 +22,14 @@ const updateHotel = (req, res, next) => {
     noPaymentNeeded,
   } = req.body;
   try {
-    const hotelQuery = `UPDATE hotels SET hotelName="${hotelName}",
+    const propertyQuery = `UPDATE properties SET propertyName="${propertyName}",
                                           stars=${stars} ,
                                           price=${price} ,
                                           reviewQuantity=${reviewQuantity},
                                           reviewRating=${reviewRating},
                                           city="${city}",
                                           address="${address}",
-                                          hotelURL="${hotelURL}",
+                                          propertyURL="${propertyURL}",
                                           customerOpinion="${customerOpinion}",
                                           typeOfAccommodation="${typeOfAccommodation}",
                                           roomDescription="${roomDescription}",
@@ -40,7 +40,7 @@ const updateHotel = (req, res, next) => {
                                           preferredPlusProperty=${preferredPlusProperty},
                                           noPaymentNeeded=${noPaymentNeeded} 
                         WHERE id=${id}`;
-    db.query(hotelQuery, (err, data) => {
+    db.query(propertyQuery, (err, data) => {
       if (err) {
         throw err;
       }
@@ -51,4 +51,4 @@ const updateHotel = (req, res, next) => {
   }
 };
 
-export default updateHotel;
+export default updateProperty;

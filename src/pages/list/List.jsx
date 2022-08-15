@@ -6,19 +6,19 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import YellowSearchBox from '../../components/yellowSearchBox/YellowSeachBox';
 import {useSelector, useDispatch} from 'react-redux';
-import CardHotel from "../../components/cardHotel/CardHotel";
+import CardProperty from "../../components/cardProperty/CardProperty";
 import Newsletter from "../../components/newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
-import { getAllHotels } from './../../features/hotelSlice';
+import { getAllProperties } from './../../features/propertySlice';
 
 const List = () => {
-  const hotels = useSelector((state) => state.hotel.entities);
+  const properties = useSelector((state) => state.property.entities);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false); 
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getAllHotels())
+    dispatch(getAllProperties())
   }, [dispatch]);
 
   
@@ -34,11 +34,11 @@ const List = () => {
                 isOptionsOpen={isOptionsOpen}
                 setIsOptionsOpen={setIsOptionsOpen} 
               />
-              {hotels && <div className="listResult"  >
+              {properties && <div className="listResult"  >
                 <h2>Australia: 14,710 properties found</h2>
-                {hotels.map((hotel) => {
+                {properties.map((property) => {
                   return (
-                    <CardHotel hotel={hotel} key={hotel.id} />
+                    <CardProperty property={property} key={property.id} />
                   )
                 })}
               </div>}

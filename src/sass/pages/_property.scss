@@ -1,6 +1,6 @@
 @import "../abstracts/_all.scss";
 
-.hotel {
+.property {
   width: 100%;
   position: relative;
   z-index: 1;
@@ -78,7 +78,7 @@
 
   
 
-  .hotelContainer {
+  .propertyContainer {
     max-width: 114rem;
     margin: 3rem auto 0;
     width: 100%;
@@ -193,7 +193,7 @@
       }
     }
 
-    .property {
+    .info{
       @include center-vertical;
       margin: 3rem 0;
       gap: 3rem;
@@ -203,12 +203,12 @@
         flex: 3;
         padding-right: 5rem;
 
-        .contentProperty {
+        .infoProperty {
           display: flex;
           flex-direction: column;
           gap: 1.6rem;
 
-          .contentPropertyText {
+          .infoPropertyText {
             font-size: 1.5rem;
             line-height: 2.3rem;
           }

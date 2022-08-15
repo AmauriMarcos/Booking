@@ -1,8 +1,9 @@
 import express from 'express';
 import db from './config/mysql.js';
 import authRoute from './routes/auth.js';
-import hotelsRoute from './routes/hotels.js';
+import propertiesRoute from './routes/properties.js';
 import roomsRoute from './routes/rooms.js';
+import infoRoute from './routes/info.js';
 import usersRoute from './routes/users.js'
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
@@ -32,8 +33,9 @@ app.get("/", (req, res) => {
 //middlewares
 app.use(cookieParser());
 app.use('/api/auth', authRoute);
+app.use('/api/info', infoRoute);
 app.use('/api/users', usersRoute);
-app.use('/api/hotels', hotelsRoute);
+app.use('/api/properties', propertiesRoute);
 app.use('/api/rooms', roomsRoute);
 
 

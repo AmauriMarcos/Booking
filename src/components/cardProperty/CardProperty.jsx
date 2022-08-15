@@ -1,5 +1,5 @@
 import React from "react";
-import "../../sass/components/_cardHotel.scss";
+import "../../sass/components/_cardProperty.scss";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
@@ -7,18 +7,18 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
 import {Link} from 'react-router-dom';
 
-const CardHotel = ({ hotel }) => {
+const CardProperty = ({ property }) => {
 
   return (
-    <Link to={`/hotels/${hotel.id}`}>
-      <div className="cardHotel">
-        <div className="cardHotelContainer">
+    <Link to={`/properties/${property.id}`}>
+      <div className="cardProperty">
+        <div className="cardPropertyContainer">
           <div className="left">
-            <img className="img" src={hotel.hotelURL} alt={hotel.hotelName} />
+            <img className="img" src={property.propertyURL} alt={property.propertyName} />
           </div>
           <div className="middle">
             <div className="header">
-              <h1 className="title">{hotel.hotelName}</h1>
+              <h1 className="title">{property.propertyName}</h1>
 
               <div className="icons">
                 <div className="stars ">
@@ -35,8 +35,8 @@ const CardHotel = ({ hotel }) => {
             </div>
             <div className="information">
               <div className="accomodation">
-                <h2 className="subtitle">{hotel.typeOfAccommodation}</h2>
-                <p className="text">{hotel.roomDescription}</p>
+                <h2 className="subtitle">{property.typeOfAccommodation}</h2>
+                <p className="text">{property.roomDescription}</p>
               </div>
 
               <h2 className="subtitle green">Breakfast included</h2>
@@ -44,7 +44,7 @@ const CardHotel = ({ hotel }) => {
               <div className="freeCancelation">
                 <h2 className="subtitle green">
                   Free Calcelation{" "}
-                  {hotel.noPaymentNeeded ? " - No prepayment needed" : ""}
+                  {property.noPaymentNeeded ? " - No prepayment needed" : ""}
                 </h2>
                 <p className="text green">
                   You can cancel later, so lock in this great price today.
@@ -60,25 +60,25 @@ const CardHotel = ({ hotel }) => {
             <div className="review">
               <div className="overall">
                 <div className="wrapper">
-                  <h1 className="overallTitle">{hotel.customerOpinion}</h1>
-                  <p className="numberOfReviews">{hotel.reviewQuantity} reviews</p>
+                  <h1 className="overallTitle">{property.customerOpinion}</h1>
+                  <p className="numberOfReviews">{property.reviewQuantity} reviews</p>
                 </div>
 
                 <div className="rating">
-                  <span className="ratingNumber">{hotel.reviewRating}</span>
+                  <span className="ratingNumber">{property.reviewRating}</span>
                 </div>
               </div>
               <h2 className="impressionTitle">
-                {hotel.roomCustomerOpinion}{" "}
-                {hotel.roomRating}
+                {property.roomCustomerOpinion}{" "}
+                {property.roomRating}
               </h2>
             </div>
 
             <div className="priceAndDetails">
               <p className="text">11 nights, 1 adult</p>
-              <h2 className="price">EUR {hotel.price}</h2>
+              <h2 className="price">EUR {property.price}</h2>
               <p className="text">Includes taxes and charges</p>
-              <div className="credit">Earn EUR {Math.floor((5 / hotel.price) * 100)} Credits</div>
+              <div className="credit">Earn EUR {Math.floor((5 / property.price) * 100)} Credits</div>
               <button className="button">
                 See availability <KeyboardArrowRightIcon />
               </button>
@@ -90,4 +90,4 @@ const CardHotel = ({ hotel }) => {
   );
 };
 
-export default CardHotel;
+export default CardProperty;

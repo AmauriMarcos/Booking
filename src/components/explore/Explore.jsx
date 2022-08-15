@@ -10,7 +10,7 @@ const Explore = () => {
         <h1 className="title">Explore Australia</h1>
         <h2 className="subtitle">These popular destinations have a lot to offer</h2>
       </div>
-      <Link to="/hotels">
+      <Link to="/properties">
       <ul className="exploreList">
         <li className="item">
           <img

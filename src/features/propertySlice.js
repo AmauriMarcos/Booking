@@ -1,18 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Hotel from "./../pages/hotel/Hotel";
 import axios from "axios";
 
 const initialState = {
   entities: [],
-  uniqueHotel: [],
+  uniqueProperty: [],
   loading: false,
   error: '',
 };
 
 //Create 
-export const createHotel = createAsyncThunk("hotels/createHotel", async (data) => {
+export const createProperty = createAsyncThunk("properties/createProperty", async (data) => {
   try {
-    const response = await axios.post("http://localhost:8000/api/hotels", data );
+    const response = await axios.post("http://localhost:8000/api/properties", data );
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -20,9 +19,9 @@ export const createHotel = createAsyncThunk("hotels/createHotel", async (data) =
 });
 
 //Get 
-export const getHotel= createAsyncThunk("hotels/getHotel", async (id) => {
+export const getProperty= createAsyncThunk("properties/getProperty", async (id) => {
   try{
-    const res = await axios.get(`http://localhost:8000/api/hotels/${id}`);
+    const res = await axios.get(`http://localhost:8000/api/properties/${id}`);
     return res.data
   }catch(error){
     console.log(error.response);
@@ -30,53 +29,53 @@ export const getHotel= createAsyncThunk("hotels/getHotel", async (id) => {
 })
 
 //Get all 
-export const getAllHotels = createAsyncThunk("hotels/getAllHotels", async () => {
+export const getAllProperties = createAsyncThunk("properties/getAllProperties", async () => {
     try{
-      const res = await axios.get("http://localhost:8000/api/hotels");
+      const res = await axios.get("http://localhost:8000/api/properties");
       return res.data
     }catch(error){
       console.log(error.response);
     }
 });
 
-const hotelSlice = createSlice({
-  name: "hotels",
+const propertySlice = createSlice({
+  name: "properties",
   initialState,
   reducers: {},
   extraReducers:  {
       //Create 
-      [createHotel.pending]: (state) => {
+      [createProperty.pending]: (state) => {
           state.loading = true
       },
-      [createHotel.fulfilled]: (state, {payload}) =>{
+      [createProperty.fulfilled]: (state, {payload}) =>{
          state.loading = false
          console.log(payload);
       },
-      [createHotel.rejected]: (state) => {
+      [createProperty.rejected]: (state) => {
         state.loading = false;
         state.error = state.error.message;
       },
       //Get 
-      [getHotel.pending]: (state) => {
+      [getProperty.pending]: (state) => {
         state.loading = true
       },
-      [getHotel.fulfilled]: (state, {payload}) =>{
+      [getProperty.fulfilled]: (state, {payload}) =>{
        state.loading = false
-       state.uniqueHotel = payload;
+       state.uniqueProperty = payload;
       },
-      [getHotel.rejected]: (state) => {
+      [getProperty.rejected]: (state) => {
         state.loading = false;
         state.error = state.error.message;
       },
       //Get all 
-      [getAllHotels.pending]: (state) => {
+      [getAllProperties.pending]: (state) => {
         state.loading = true
       },
-      [getAllHotels.fulfilled]: (state, {payload}) =>{
+      [getAllProperties.fulfilled]: (state, {payload}) =>{
        state.loading = false
        state.entities = payload;
       },
-      [getAllHotels.rejected]: (state) => {
+      [getAllProperties.rejected]: (state) => {
         state.loading = false;
         state.error = state.error.message;
       },
@@ -84,5 +83,5 @@ const hotelSlice = createSlice({
   }
 });
 
-export const { getHotelById } = hotelSlice.actions;
-export default hotelSlice.reducer;
+export const { getPropertyById } = propertySlice.actions;
+export default propertySlice.reducer;

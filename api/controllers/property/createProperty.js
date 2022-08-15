@@ -1,14 +1,15 @@
 import db from "../../config/mysql.js";
-const createHotel = (req, res, next) => {
+const createProperty = (req, res, next) => {
   const {
-    hotelName,
+    propertyName,
+    propertyType,
     stars,
     price,
     reviewQuantity,
     reviewRating,
-    city,
+    location,
     address,
-    hotelURL,
+    propertyURL,
     customerOpinion,
     typeOfAccommodation,
     roomDescription,
@@ -19,13 +20,13 @@ const createHotel = (req, res, next) => {
     preferredPlusProperty,
     noPaymentNeeded,
   } = req.body;
-  const q = `INSERT INTO hotels(hotelName,stars,price,
-                            reviewQuantity,reviewRating,city,address,hotelURL,
+  const q = `INSERT INTO properties(propertyName, propertyType, stars,price,
+                            reviewQuantity,reviewRating,location,address,propertyURL,
                             customerOpinion,typeOfAccommodation,roomDescription,roomRating,
                             roomCustomerOpinion,freeCancelation,breakfastIncluded,
                             preferredPlusProperty,noPaymentNeeded)
-                    VALUES("${hotelName}",${stars},${price},
-                            ${reviewQuantity},${reviewRating},"${city}","${address}","${hotelURL}",
+                    VALUES("${propertyName}", "${propertyType}",${stars},${price},
+                            ${reviewQuantity},${reviewRating},"${location}","${address}","${propertyURL}",
                             "${customerOpinion}","${typeOfAccommodation}","${roomDescription}",${roomRating},
                            "${roomCustomerOpinion}",${freeCancelation},${breakfastIncluded},
                            ${preferredPlusProperty},${noPaymentNeeded});`;
@@ -41,4 +42,4 @@ const createHotel = (req, res, next) => {
   }
 };
 
-export default createHotel;
+export default createProperty;

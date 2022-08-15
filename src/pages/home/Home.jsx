@@ -5,7 +5,7 @@ import Header from '../../components/header/Header';
 import Hero from '../../components/hero/Hero';
 import Featured from '../../components/featured/Featured';
 import Explore from '../../components/explore/Explore';
-import Properties from './../../components/properties/Properties';
+import PropertiesType from './../../components/propertiesType/PropertiesType';
 import Destinations from '../../components/destinations/Destinations';
 import Newsletter from '../../components/newsletter/Newsletter';
 import Footer from '../../components/footer/Footer';
@@ -19,7 +19,7 @@ const Home = () => {
       <div className="homeContainer">
         <Explore/>
         <Featured/>
-        <Properties/>
+        <PropertiesType/>
         <Destinations/>
         <Newsletter/>
         <Footer/>

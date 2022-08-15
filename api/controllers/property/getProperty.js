@@ -1,8 +1,8 @@
 import db from '../../config/mysql.js';
 
-const getHotel = (req, res, next) => {
+const getProperty = (req, res, next) => {
     try {
-        const q = `SELECT * FROM hotels`;
+        const q = `SELECT * FROM properties`;
         db.query(q, (err, data) => {
           if (err) {
             throw err;
@@ -14,4 +14,4 @@ const getHotel = (req, res, next) => {
       }
 }
 
-export default getHotel;
+export default getProperty;

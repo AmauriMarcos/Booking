@@ -1,6 +1,6 @@
 import db from '../../config/mysql.js';
 
-const getHotelByID = (req, res, next) => {
+const getPropertyByID = (req, res, next) => {
   let arrayGallery = [];
   const id = req.params.id;
   const galleryQuery = ` SELECT imageURL FROM gallery
@@ -14,8 +14,8 @@ const getHotelByID = (req, res, next) => {
             return arrayGallery.push(data);
           });
         
-          const hotelQuery = `SELECT * FROM hotels WHERE id=${id}`;
-          db.query(hotelQuery, (err, data) => {
+          const propertyQuery = `SELECT * FROM properties WHERE id=${id}`;
+          db.query(propertyQuery, (err, data) => {
             if (err) {
               throw err;
             }
@@ -32,4 +32,4 @@ const getHotelByID = (req, res, next) => {
     }
 }
 
-export default getHotelByID;
+export default getPropertyByID;

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import YellowSeachBox from "../../components/yellowSearchBox/YellowSeachBox";
-import "../../sass/pages/_hotel.scss";
+import "../../sass/pages/_property.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getHotel} from "../../features/hotelSlice";
+import { getProperty} from "../../features/propertySlice";
 import StarIcon from "@mui/icons-material/Star";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
@@ -16,23 +16,23 @@ import DeckOutlinedIcon from "@mui/icons-material/DeckOutlined";
 import FoundationOutlinedIcon from "@mui/icons-material/FoundationOutlined";
 import LocalFloristOutlinedIcon from "@mui/icons-material/LocalFloristOutlined";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
-import Footer from "./../../components/footer/Footer";
-import Newsletter from "./../../components/newsletter/Newsletter";
+import Footer from "../../components/footer/Footer";
+import Newsletter from "../../components/newsletter/Newsletter";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
 
-const Hotel = () => {
+const Property = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isSlideOpen, setIsSlideOpen] = useState(false);
-  const hotelbyID = useSelector((state) => state.hotel.uniqueHotel);
+  const propertybyID = useSelector((state) => state.property.uniqueProperty);
   const params = useParams();
   const dispatch = useDispatch();
   const { id } = params;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getHotel(id));
+    dispatch(getProperty(id));
   }, [id, dispatch]);
 
   const handleSlider = (index) => {
@@ -48,7 +48,7 @@ const Hotel = () => {
  
  }
  
-const {hotel, gallery} = hotelbyID
+const {property, gallery} = propertybyID
 
 let myGallery = [].concat.apply([], gallery);
 
@@ -62,11 +62,11 @@ let myGallery = [].concat.apply([], gallery);
 
 
   return (
-    <div className="hotel">
+    <div className="property">
       <Navbar />
       <Header />
          
-      <div className="hotelContainer">
+      <div className="propertyContainer">
       {isSlideOpen && (<div className="backSlide" > 
       <div onClick={(e) => closeSlider(e)} className="closeButton">
         <CloseIcon className="icon" />
@@ -96,7 +96,7 @@ let myGallery = [].concat.apply([], gallery);
           <div className="gallery">
             <div className="galleryHeader">
               <div className="galleryHeaderLeft">
-                {hotel && <div className="acomodation">{hotel[0]?.typeOfAccommodation}</div>}
+                {property && <div className="acomodation">{property[0]?.typeOfAccommodation}</div>}
 
                 <div className="icons">
                   <div className="stars ">
@@ -119,10 +119,10 @@ let myGallery = [].concat.apply([], gallery);
               </div>
             </div>
             
-            {hotel && (
+            {property && (
               <>
-                <h2 className="title">{hotel[0]?.hotelName}</h2>
-                <p className="text">{hotel[0]?.address}</p> 
+                <h2 className="title">{property[0]?.hotelName}</h2>
+                <p className="text">{property[0]?.address}</p> 
               </>
             )}
             
@@ -138,33 +138,33 @@ let myGallery = [].concat.apply([], gallery);
           </div>
         </div>
 
-        <div className="property">
+        <div className="info">
           <div className="content">
-            <div className="contentProperty">
-              <p className="contentPropertyText">
+            <div className="infoProperty">
+              <p className="infoPropertyText">
                 Gosamara Apartments offer self-contained accommodation just a
                 5-minute walk from the Byron Bay's Belongil Beach, Main Beach
                 and town centre. The property features a heated saltwater
                 swimming pool, tropical gardens and free parking.
               </p>
-              <p className="contentPropertyText">
+              <p className="infoPropertyText">
                 Some units at Gosamara come with kitchen and laundry facilities.
                 An air-conditioned, flat-screen satellite TV and DVD player are
                 provided. Some apartments offer pool views.
               </p>
-              <p className="contentPropertyText">
+              <p className="infoPropertyText">
                 Guests at Gosamara Byron Bay can relax in the spa pool, or enjoy
                 a barbecue with friends. The tour desk can assist with travel
                 arrangements. Luggage storage facilities and free covered
                 parking are provided.
               </p>
-              <p className="contentPropertyText">
+              <p className="infoPropertyText">
                 Coolangatta (Gold Coast) Airport is a 50-minute drive from
                 Gosamara Apartments. Cape Byron Lighthouse is 8 minutes’ drive
                 away. The famous Byron Bay Markets are just 2 minutes away by
                 car.
               </p>
-              <p className="contentPropertyText">
+              <p className="infoPropertyText">
                 This is our guests' favourite part of Byron Bay, according to
                 independent reviews.
               </p>
@@ -223,4 +223,4 @@ let myGallery = [].concat.apply([], gallery);
   );
 };
 
-export default Hotel;
+export default Property;
