@@ -7,11 +7,10 @@ import axios from 'axios';
 
 const PropertiesType = () => {
   const dispatch = useDispatch();
-  const propertiesType = useSelector((state) => state.info.entities);
+  const propertiesType = useSelector((state) => state.info.typeEntities);
 
   useEffect(() => {
     dispatch(countByType());
-
   }, [dispatch]);
 
 

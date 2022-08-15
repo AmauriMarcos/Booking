@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-    entities: [],
+    cityEntities: [],
+    typeEntities: [],
     loading: false,
     error: null
 }
@@ -35,7 +36,7 @@ const infoSlice = createSlice({
         },
         [countByCity.fulfilled]: (state, {payload}) => {
             state.loading = false
-            state.entities = payload
+            state.cityEntities = payload
         },
         [countByCity.rejected]: (state) => {
             state.loading = false
@@ -46,7 +47,7 @@ const infoSlice = createSlice({
         },
         [countByType.fulfilled]: (state, {payload}) => {
             state.loading = false
-            state.entities = payload
+            state.typeEntities = payload
         },
         [countByType.rejected]: (state) => {
             state.loading = false

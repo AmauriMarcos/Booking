@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Featured = () => {
   const dispatch = useDispatch();
-  const properties = useSelector((state) => state.info.entities);
+  const properties = useSelector((state) => state.info.cityEntities);
 
   useEffect(() => {
     dispatch(countByCity());
