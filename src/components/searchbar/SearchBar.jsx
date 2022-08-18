@@ -8,10 +8,17 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import OptionsBox from "../optionsBox/OptionsBox";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import changeDateFormat from '../../utils/formatDate.js';
+import {useNavigate} from 'react-router-dom';
+import { handleDate } from "../../features/searchSlice";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const search = useSelector((state) => state.search.options)
+  const [location, setLocation] = useState("");
+  const [error, setError] = useState("");
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -23,6 +30,30 @@ const SearchBar = () => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
+
+  let currentStartDate = date[0]?.startDate;
+  let currentEndDate = date[0]?.endDate;
+
+/*   const checkIn = changeDateFormat(currentStartDate);
+  const checkOut = changeDateFormat(currentEndDate); */
+
+  const dates = {
+    checkIn: currentStartDate,
+    checkOut: currentEndDate
+  }
+
+  console.log(dates);
+
+  const submit = (e) => {
+    if(location.trim() !== ''){
+      e.preventDefault();
+      dispatch(handleDate(dates));
+      navigate(`/properties/search/${location}`);
+    }else{
+      setError('Please enter a destination to start searching.')
+    }   
+  }
+
   return (
     <div className="searchBar">
       <div className="searchBarItem">
@@ -31,8 +62,12 @@ const SearchBar = () => {
           className="input"
           type="search"
           placeholder="Where are you going?"
+          onChange={(e) => setLocation(e.target.value)}
         />
+    
+{/*         {error && <div><p>{error}</p></div> } */}
       </div>
+      
       <div className="searchBarItem">
         <CalendarMonthOutlinedIcon className="icon" />
 
@@ -79,7 +114,7 @@ const SearchBar = () => {
         </span>
         {isOptionsOpen && <OptionsBox />}
       </div>
-      <button className="button">Search</button>
+      <button className="button" onClick={submit}>Search</button>
     </div>
   );
 };

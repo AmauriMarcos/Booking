@@ -20,8 +20,19 @@
       gap: 1rem;
       width: 100%;
 
+      .optionsContainer{
+        z-index: 2;
+      }
+
       .item {
         position: relative;
+
+        .calendar{
+          position: absolute;
+        top: 5rem;
+        left: 0;
+        z-index: 55;
+        }
         
         p {
           font-size: 1.3rem;

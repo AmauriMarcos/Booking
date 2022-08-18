@@ -21,7 +21,7 @@ const getPropertyByID = (req, res, next) => {
             }
         
             let myJoinTableData = {
-              hotel: data,
+              property: data,
               gallery: arrayGallery,
             };
         

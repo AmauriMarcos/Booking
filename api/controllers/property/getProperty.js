@@ -1,8 +1,9 @@
 import db from '../../config/mysql.js';
 
 const getProperty = (req, res, next) => {
+    console.log(req.body);
     try {
-        const q = `SELECT * FROM properties`;
+        const q = `SELECT * FROM properties WHERE location="New York"`;
         db.query(q, (err, data) => {
           if (err) {
             throw err;

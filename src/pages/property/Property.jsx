@@ -29,7 +29,7 @@ const Property = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const { id } = params;
-
+console.log(propertybyID)
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getProperty(id));
@@ -48,8 +48,8 @@ const Property = () => {
  
  }
  
-const {property, gallery} = propertybyID
-
+const {property, gallery} = propertybyID;
+console.log(property, gallery)
 let myGallery = [].concat.apply([], gallery);
 
  let lastIndex = myGallery?.length -1; 
@@ -121,7 +121,7 @@ let myGallery = [].concat.apply([], gallery);
             
             {property && (
               <>
-                <h2 className="title">{property[0]?.hotelName}</h2>
+                <h2 className="title">{property[0]?.propertyName}</h2>
                 <p className="text">{property[0]?.address}</p> 
               </>
             )}

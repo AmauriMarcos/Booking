@@ -37,12 +37,13 @@ const Featured = () => {
   });
 
   const classes = ["a", "b", "c", "d", "e"];
-  console.log(displayProperties)
+
+
   return (
     <div className="featured">
       {displayProperties.map((property, i) => {
         return (
-          <Link to="/properties" className={classes[i]} key={property?.location}>
+          <Link to={`/properties/search/${property?.location}`} className={classes[i]} key={property?.location}>
             <div className={`featuredItem `}>
               <img
                 className="featuredItem__img"
@@ -51,7 +52,7 @@ const Featured = () => {
               />
               <div className="featuredItem__title">
                 <h1>{property?.location}</h1>
-                <h2>{property?.numberOfProperties} properties</h2>
+                <h2>{property?.numberOfProperties} {property?.numberOfProperties > 1 ? "properties" : "property"}</h2>
               </div>
             </div>
           </Link>

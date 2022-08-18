@@ -1,7 +1,8 @@
 import db from '../../config/mysql.js';
 
 const countByType = (req, res, next)=> {
-    const q = ` SELECT  propertyType,
+    const q = ` SELECT  id,
+                        propertyType,
                         COUNT(*) AS "numberOfpropertiesType",
                         propertyURL
                 FROM properties

@@ -9,19 +9,26 @@ import {useSelector, useDispatch} from 'react-redux';
 import CardProperty from "../../components/cardProperty/CardProperty";
 import Newsletter from "../../components/newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
-import { getAllProperties } from './../../features/propertySlice';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getPropertiesByLocation } from './../../features/searchSlice';
+import { capitalize } from "@mui/material";
 
 const List = () => {
-  const properties = useSelector((state) => state.property.entities);
+  const navigate = useNavigate();
+  const params = useParams();
+  const properties = useSelector((state) => state.search.entities);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false); 
   const dispatch = useDispatch();
 
+  const location = params.location;
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getAllProperties())
-  }, [dispatch]);
+    dispatch(getPropertiesByLocation(location))
+  }, [dispatch, location]);
 
-  
+  console.log(properties);
+
   return (
     <div className="list">
       <Navbar />
@@ -31,11 +38,12 @@ const List = () => {
           <div className="listContainer">
             <div className="listWrapper">
               <YellowSearchBox
+                location={location}
                 isOptionsOpen={isOptionsOpen}
                 setIsOptionsOpen={setIsOptionsOpen} 
               />
               {properties && <div className="listResult"  >
-                <h2>Australia: 14,710 properties found</h2>
+                <h2 style={{"textTransform":"capitalize"}}>{location}: {properties.length} {properties.length > 1 ? "properties found" : "property found"}</h2>
                 {properties.map((property) => {
                   return (
                     <CardProperty property={property} key={property.id} />

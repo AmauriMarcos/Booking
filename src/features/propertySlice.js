@@ -30,8 +30,9 @@ export const getProperty= createAsyncThunk("properties/getProperty", async (id) 
 
 //Get all 
 export const getAllProperties = createAsyncThunk("properties/getAllProperties", async () => {
-    try{
-      const res = await axios.get("http://localhost:8000/api/properties");
+
+  try{
+      const res = await axios.get(`http://localhost:8000/api/properties`);
       return res.data
     }catch(error){
       console.log(error.response);

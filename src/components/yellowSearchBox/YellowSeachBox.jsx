@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import OptionsBox from "../../components/optionsBox/OptionsBox";
 import SearchIcon from "@mui/icons-material/Search";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -6,13 +6,24 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useSelector } from "react-redux";
 import '../../sass/components/_yellowSearchBox.scss';
+import { format } from "date-fns";
+import { DateRange } from "react-date-range";
 
-const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type}) => {
+const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type, location}) => {
   const search = useSelector((state) => state.search.options);
-
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const {checkIn, checkOut} = useSelector((state) => state.search);
   const submit = (e) => {
     e.preventDefault();
   };
+
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: "selection",
+    },
+  ]);
 
   return (
     <div className={type === "hotel" ? "listSearch noSticky" : "listSearch"}>
@@ -26,7 +37,7 @@ const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type}) => {
             <SearchIcon className="searchIcon" />
             <input
               type="text"
-              placeholder="Budapest"
+              placeholder={location}
               name="search"
               className="search"
             />
@@ -37,28 +48,47 @@ const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type}) => {
           <p>Check-in date</p>
           <div className="wrapper">
             <CalendarTodayIcon className="calendarIcon" />
-            <p>Wednesday 27 July 2022</p>
+            {checkIn ? (
+          <span
+            onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+            className="date"
+          >
+            {`${format(checkIn, "EEE dd MMM")} - ${format(
+              checkOut,
+              "EEE dd MMM"
+            )}`}
+          </span>
+        ) : (
+          <p
+            onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+            className="text"
+          >
+            Check-in Check-out
+          </p>
+        )}
+
+        {isCalendarOpen && (
+          <DateRange
+            editableDateInputs={true}
+            onChange={(item) => setDate([item.selection])}
+            moveRangeOnFirstSelection={false}
+            ranges={date}
+            className="calendar"
+          />
+        )}
+
             <KeyboardArrowDownIcon className="arrowIcon" />
           </div>
         </div>
+        
 
-        <div className="item">
-          <p>Check-out date</p>
-          <div className="wrapper">
-            <CalendarTodayIcon className="calendarIcon" />
-            <p>Saturday 30 July 2022</p>
-            <KeyboardArrowDownIcon className="arrowIcon" />
-          </div>
-          <p>3-night stay</p>
-        </div>
-
-        <div className="item">
+        <div className="item optionsContainer">
           <div
             className="wrapper"
             onClick={() => setIsOptionsOpen(!isOptionsOpen)}
           >
             <p>
-              {search[0]?.qtd} adults - {search[1]?.qtd} children -{" "}
+              {search[0]?.qtd} adults - {search[1]?.qtd} children - {" "}
               {search[2]?.qtd} room
             </p>
             <KeyboardArrowDownIcon className="arrowIcon" />

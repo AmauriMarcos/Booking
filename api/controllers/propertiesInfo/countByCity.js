@@ -2,6 +2,7 @@ import db from '../../config/mysql.js';
 
 const countByCity = (req, res, next)=> {
     const q = ` SELECT location,
+                       propertyURL,
                        COUNT(*) AS "numberOfProperties"
                 FROM properties
                 GROUP BY location;`
