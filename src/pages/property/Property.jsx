@@ -21,19 +21,35 @@ import Newsletter from "../../components/newsletter/Newsletter";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
+import axios from 'axios';
+import differenceBetweenDatesInDays from "../../utils/differenceBetweenDatesInDays";
 
 const Property = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isSlideOpen, setIsSlideOpen] = useState(false);
+  const [rooms, setRooms] = useState([]);
   const propertybyID = useSelector((state) => state.property.uniqueProperty);
+  const {checkIn, checkOut} = useSelector((state)=> state.search);
   const params = useParams();
   const dispatch = useDispatch();
   const { id } = params;
-console.log(propertybyID)
+
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getProperty(id));
+    try{
+      const getRooms =  async () => {
+        const res = await axios.get(`http://localhost:8000/api/rooms/${id}`);
+        setRooms(res.data)
+        console.log(res.data)
+      }
+      getRooms();
+    }catch(err){
+      console.log(err);
+    }
+   
   }, [id, dispatch]);
+
 
   const handleSlider = (index) => {
     setSlideNumber(index);
@@ -45,11 +61,14 @@ console.log(propertybyID)
   setIsSlideOpen(false);
   e.stopPropagation()
   e.nativeEvent.stopImmediatePropagation();
- 
+
  }
  
 const {property, gallery} = propertybyID;
-console.log(property, gallery)
+
+
+let days = differenceBetweenDatesInDays(checkIn, checkOut);
+
 let myGallery = [].concat.apply([], gallery);
 
  let lastIndex = myGallery?.length -1; 

@@ -12,10 +12,10 @@ const router = express.Router();
     router.post("/", verifyAdmin, createRoom);
 
 //GET
-    router.get("/", getRoom);
+    router.get("/list/:location", getRoom);
 
 //GET BY ID
-    router.get("/:id", verifyAdmin, getRoomById);
+    router.get("/:id",  getRoomById);
 
 //UPDATE
     router.put("/:id", verifyAdmin, updateRoom);

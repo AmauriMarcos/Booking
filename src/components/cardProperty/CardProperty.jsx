@@ -6,9 +6,13 @@ import StarIcon from "@mui/icons-material/Star";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
 import {Link} from 'react-router-dom';
+import { daysInWeek } from "date-fns/constants/index";
+import {useSelector} from 'react-redux';
 
-const CardProperty = ({ property }) => {
-
+const CardProperty = ({ property, days }) => {
+  days = days >= 1 ? days : 1;
+  const options = useSelector((state) => state.search.options)
+  console.log(days)
   return (
     <Link to={`/properties/${property.id}`}>
       <div className="cardProperty">
@@ -75,10 +79,17 @@ const CardProperty = ({ property }) => {
             </div>
 
             <div className="priceAndDetails">
-              <p className="text">11 nights, 1 adult</p>
-              <h2 className="price">EUR {property.price}</h2>
+              {days >= 1 && <p className="text"> {days} {days <= 1 ? "night" : "nights"}</p>}
+
+              <div className="optionsGroup">
+                <p className="optionsItem">{options[0].name} {options[0].qtd},</p>
+                <p className={`optionsItem ${options[1].qtd < 1 ? "invisible": ""}`}>{options[1].name} {options[1].qtd},</p>
+                <p className="optionsItem">{options[2].name} {options[2].qtd}</p>
+              </div>
+             
+              <h2 className="price">EUR {property.price * days}</h2>
               <p className="text">Includes taxes and charges</p>
-              <div className="credit">Earn EUR {Math.floor((5 / property.price) * 100)} Credits</div>
+              <div className="credit">Earn EUR {(property.price * days) * (13/100)} Credits</div>
               <button className="button">
                 See availability <KeyboardArrowRightIcon />
               </button>

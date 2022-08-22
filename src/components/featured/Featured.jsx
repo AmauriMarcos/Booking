@@ -38,7 +38,6 @@ const Featured = () => {
 
   const classes = ["a", "b", "c", "d", "e"];
 
-
   return (
     <div className="featured">
       {displayProperties.map((property, i) => {

@@ -151,6 +151,27 @@
         flex-direction: column;
         align-items: flex-end;
 
+        .optionsGroup{
+          @include center-vertical;
+          justify-content: flex-end;
+          flex-direction: column;
+
+          .invisible{
+            display: none;
+            opacity: 0;
+          }
+
+          width: 200px;
+   
+
+          .optionsItem{
+             font-size: 1.3rem;
+             width: 100%;
+
+             text-align: right;
+          }
+        }
+
         .text {
           font-size: 1.25rem;
           text-align: right;

@@ -29,7 +29,7 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     handleDate(state, {payload}){
-      console.log(payload);
+      console.log(payload)
       state.checkIn = payload.checkIn
       state.checkOut = payload.checkOut
     },

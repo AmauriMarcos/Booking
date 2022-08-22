@@ -12,22 +12,37 @@ import Footer from "../../components/footer/Footer";
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPropertiesByLocation } from './../../features/searchSlice';
 import { capitalize } from "@mui/material";
+import differenceBetweenDatesInDays from "../../utils/differenceBetweenDatesInDays";
+import axios from 'axios';
 
 const List = () => {
   const navigate = useNavigate();
   const params = useParams();
   const properties = useSelector((state) => state.search.entities);
+  const {checkIn, checkOut} = useSelector((state) => state.search);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false); 
+  
   const dispatch = useDispatch();
 
   const location = params.location;
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getPropertiesByLocation(location))
+    dispatch(getPropertiesByLocation(location));
+    try{
+      const getRooms =  async () => {
+        const res = await axios.get(`http://localhost:8000/api/rooms/list/${location}`);
+        setRooms(res.data)
+      }
+      getRooms();
+    }catch(err){
+      console.log(err);
+    }
   }, [dispatch, location]);
 
-  console.log(properties);
+  const days = differenceBetweenDatesInDays(checkIn, checkOut);
+
 
   return (
     <div className="list">
@@ -42,11 +57,11 @@ const List = () => {
                 isOptionsOpen={isOptionsOpen}
                 setIsOptionsOpen={setIsOptionsOpen} 
               />
-              {properties && <div className="listResult"  >
+              {rooms && <div className="listResult"  >
                 <h2 style={{"textTransform":"capitalize"}}>{location}: {properties.length} {properties.length > 1 ? "properties found" : "property found"}</h2>
-                {properties.map((property) => {
+                {rooms.map((room) => {
                   return (
-                    <CardProperty property={property} key={property.id} />
+                    <CardProperty roomsQTD={room.roomsQTD} days={days} property={room} key={room.id} />
                   )
                 })}
               </div>}
