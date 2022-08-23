@@ -10,6 +10,8 @@ const initialState = {
     { id: 2, name: "children", qtd: 0 },
     { id: 3, name: "rooms", qtd: 1 },
   ],
+  price: '',
+  days: '',
   loading: false,
   error: null,
 };
@@ -45,6 +47,10 @@ const searchSlice = createSlice({
         return option.id === id ? option.qtd-- : option;
       });
     },
+    handlePriceAndDays(state, {payload}){
+      state.price = payload.price * payload.days;
+      state.days = payload.days;
+    }
   },
   extraReducers: {
     [getPropertiesByLocation.pending] : (state) => {
@@ -61,6 +67,6 @@ const searchSlice = createSlice({
   }
 });
 
-export const { increment, decrement, handleDate } = searchSlice.actions;
+export const { increment, decrement, handleDate, handlePriceAndDays } = searchSlice.actions;
 export default searchSlice.reducer;
 

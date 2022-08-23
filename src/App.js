@@ -4,6 +4,7 @@ import List from './pages/list/List';
 import Property from './pages/property/Property';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import './App.css';
 
 function App() {
   return (

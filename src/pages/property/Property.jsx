@@ -23,12 +23,15 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import differenceBetweenDatesInDays from "../../utils/differenceBetweenDatesInDays";
+import Modal from '../../components/Modal';
 
 const Property = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [isSlideOpen, setIsSlideOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [rooms, setRooms] = useState([]);
   const propertybyID = useSelector((state) => state.property.uniqueProperty);
+  const {price, days} = useSelector((state) => state.search);
   const {checkIn, checkOut} = useSelector((state)=> state.search);
   const params = useParams();
   const dispatch = useDispatch();
@@ -36,6 +39,7 @@ const Property = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+      
     dispatch(getProperty(id));
     try{
       const getRooms =  async () => {
@@ -44,8 +48,8 @@ const Property = () => {
         console.log(res.data)
       }
       getRooms();
-    }catch(err){
-      console.log(err);
+    }catch(error){
+      console.log(error.response);
     }
    
   }, [id, dispatch]);
@@ -67,7 +71,7 @@ const Property = () => {
 const {property, gallery} = propertybyID;
 
 
-let days = differenceBetweenDatesInDays(checkIn, checkOut);
+/* let days = differenceBetweenDatesInDays(checkIn, checkOut); */
 
 let myGallery = [].concat.apply([], gallery);
 
@@ -79,12 +83,19 @@ let myGallery = [].concat.apply([], gallery);
   setSlideNumber(slideNumber === 0 ? lastIndex : slideNumber - 1);
  } 
 
+  const classes = ["a", "b", "c", "d", "e", "f"];
+
+  const openModal = () => {
+    window.scrollTo(0, 0);
+    document.body.classList.add('noScrolling');
+    setIsModalOpen(true);
+  }
 
   return (
     <div className="property">
       <Navbar />
       <Header />
-         
+      {isModalOpen && <Modal rooms={rooms} setIsModalOpen={setIsModalOpen}/>}
       <div className="propertyContainer">
       {isSlideOpen && (<div className="backSlide" > 
       <div onClick={(e) => closeSlider(e)} className="closeButton">
@@ -105,13 +116,7 @@ let myGallery = [].concat.apply([], gallery);
       </div> 
       </div>)}
       
-      
-
         <div className="searchAndGallery">
-          <div className="search">
-            <YellowSeachBox type="hotel" />
-          </div>
-
           <div className="gallery">
             <div className="galleryHeader">
               <div className="galleryHeaderLeft">
@@ -134,7 +139,7 @@ let myGallery = [].concat.apply([], gallery);
               <div className="galleryHeaderRight">
                 <FavoriteBorderIcon className="icon" />
                 <ShareIcon className="icon" />
-                <button className="button">Reserve</button>
+                <button onClick={openModal} className="button">Reserve</button>
               </div>
             </div>
             
@@ -148,7 +153,7 @@ let myGallery = [].concat.apply([], gallery);
             <div className="photos">
               {myGallery && myGallery.map((photo, i) => {
                 return (
-                  <div key={i} onClick={() => handleSlider(i)}>
+                  <div key={i} onClick={() => handleSlider(i)} className={classes[i]}>
                     <img className="img" src={photo?.imageURL} alt="hotel" />
                   </div>
                 );
@@ -231,8 +236,13 @@ let myGallery = [].concat.apply([], gallery);
                   Free private parking available on-site
                 </span>
               </div>
+
+              <div className="priceAndDays">
+                <p>&euro; {price} <span>({days} {days <= 1 ? "night" : "nights"})</span></p>
+              </div>
             </div>
-            <button className="button">Reserve</button>
+            
+            <button onClick={openModal} className="button">Reserve</button>
           </div>
         </div>
       </div>

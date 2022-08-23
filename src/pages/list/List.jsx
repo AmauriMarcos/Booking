@@ -36,8 +36,8 @@ const List = () => {
         setRooms(res.data)
       }
       getRooms();
-    }catch(err){
-      console.log(err);
+    }catch(error){
+      console.log(error.response);
     }
   }, [dispatch, location]);
 

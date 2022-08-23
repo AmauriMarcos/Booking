@@ -12,8 +12,8 @@ export const countByCity = createAsyncThunk("info/countByCity", async() => {
     try{
         const res = await axios.get("http://localhost:8000/api/info/countByCity");
         return res.data;
-    }catch(err){
-        console.log(err)
+    }catch(error){
+        console.log(error.response)
     }
 });
 
@@ -21,8 +21,8 @@ export const countByType = createAsyncThunk("info/countByType", async() => {
     try{
         const res = await axios.get("http://localhost:8000/api/info/countByType");
         return res.data;
-    }catch(err){
-        console.log(err)
+    }catch(error){
+        console.log(error.response)
     }
 });
 

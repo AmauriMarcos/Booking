@@ -1,18 +1,28 @@
-import React from "react";
+import React, {useEffect, useMemo} from "react";
 import "../../sass/components/_cardProperty.scss";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
 import {Link} from 'react-router-dom';
-import { daysInWeek } from "date-fns/constants/index";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {handlePriceAndDays} from '../../features/searchSlice';
 
 const CardProperty = ({ property, days }) => {
+  const dispatch = useDispatch();
   days = days >= 1 ? days : 1;
   const options = useSelector((state) => state.search.options)
-  console.log(days)
+
+  const data = useMemo(() => ({
+    price: property.price,
+    days: days
+  }), [property.price, days])
+
+  
+  useEffect(() => {
+    dispatch(handlePriceAndDays(data));
+  },[dispatch, data]);
+
   return (
     <Link to={`/properties/${property.id}`}>
       <div className="cardProperty">
