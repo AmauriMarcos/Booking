@@ -5,7 +5,7 @@ import {login} from '../../features/authSlice';
 import '../../sass/pages/_login.scss';
 
 const Login = () => {
-  const auth = useSelector((state) => state.auth.entities);
+  
   const dispatch = useDispatch();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");

@@ -1,11 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../../sass/layout/_navigation.scss";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import {Link} from 'react-router-dom';
+import { getUser } from "../../features/authSlice";
+import {useDispatch, useSelector} from 'react-redux';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = false;
+  const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth.entities);
+
+  useEffect(() => {
+    if(auth.user){
+      const id = auth.user;
+      dispatch(getUser(id));
+    }
+  }, [auth.user, dispatch]);
+
+  console.log(user);
+ 
   return (
     <div className="navbar">
       <nav className="navHeader">
