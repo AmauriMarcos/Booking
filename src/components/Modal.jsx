@@ -15,7 +15,7 @@ function Modal({setIsModalOpen, rooms}) {
             <p>Something</p>
             <button onClick={closeModal}>x</button>
             <form className="form">
-                {rooms.map((room) => (
+                {rooms?.map((room) => (
                     <Reservation room={room.room} key={room.id}/>
                 ))}
             </form>

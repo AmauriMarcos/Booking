@@ -12,7 +12,7 @@ const Featured = () => {
     dispatch(countByCity());
   }, [dispatch]);
 
-  const selectedProperties = properties.filter((property) => {
+  const selectedProperties = properties?.filter((property) => {
     return (
       property.location === "Hawaii" ||
       property.location === "Tokyo" ||
@@ -40,18 +40,18 @@ const Featured = () => {
 
   return (
     <div className="featured">
-      {displayProperties.map((property, i) => {
+      {displayProperties?.map((property, i) => {
         return (
-          <Link to={`/properties/search/${property?.location}`} className={classes[i]} key={property?.location}>
+          <Link to={`/properties/search/${property.location}`} className={classes[i]} key={property?.location}>
             <div className={`featuredItem `}>
               <img
                 className="featuredItem__img"
-                src={property.url}
+                src={property?.url}
                 alt={property?.location}
               />
               <div className="featuredItem__title">
                 <h1>{property?.location}</h1>
-                <h2>{property?.numberOfProperties} {property?.numberOfProperties > 1 ? "properties" : "property"}</h2>
+                <h2>{property?.numberOfProperties} {property.numberOfProperties > 1 ? "properties" : "property"}</h2>
               </div>
             </div>
           </Link>

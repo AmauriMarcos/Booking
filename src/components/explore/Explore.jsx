@@ -27,7 +27,7 @@ const Explore = () => {
       </div>
  
       <ul className="exploreList">
-        {cities.slice(0,6).map((city) => {
+        {cities?.slice(0,6).map((city) => {
           return (
           <li className="item" key={city.location} onClick={(e) => listLocation(e, city.location)}>
             <img

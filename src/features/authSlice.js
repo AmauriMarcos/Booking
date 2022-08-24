@@ -26,13 +26,23 @@ export const login = createAsyncThunk("users/login", async(data) => {
       },
       withCredentials: true
     }
+
   try{
     const res = await axios.post(`http://localhost:8000/api/auth/login`, data, config);
-    return res.data;
+    if(res.data.user){
+      try{
+        const id = res.data.user;
+        const response = await axios.get(`http://localhost:8000/api/users/${id}`);
+        console.log(response.data);
+        return response.data;
+      }catch(error){
+        console.log(error.message)
+      }
+    }
   }catch(err){
     console.log(err.response.data.message);
   }
-})
+});
 
 const authSlice = createSlice({
   name: "auth",

@@ -11,8 +11,8 @@ const searchProperty = (req, res, next) => {
           console.log(data);
           res.send(data);
         });
-      } catch (err) {
-        next(err);
+      } catch (error) {
+        next(error.message);
       } 
 }
 

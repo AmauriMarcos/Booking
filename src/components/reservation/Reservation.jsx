@@ -3,7 +3,7 @@ import '../../sass/components/_reservation.scss';
 
 const Reservation = ({room}) => {
   return (
-    <div className='wrapper'>
+    <div className='wrapperRoom'>
       <input className="checkbox" type="checkbox" id="room" name="room"/>
       <label className="label" htmlFor="room">{room}</label>
     </div>
