@@ -4,8 +4,9 @@ import Navbar from "../../components/navbar/Navbar";
 import YellowSeachBox from "../../components/yellowSearchBox/YellowSeachBox";
 import "../../sass/pages/_property.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getProperty} from "../../features/propertySlice";
+import { setLocationID} from "../../features/searchSlice";
 import StarIcon from "@mui/icons-material/Star";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddIcon from "@mui/icons-material/Add";
@@ -26,6 +27,8 @@ import differenceBetweenDatesInDays from "../../utils/differenceBetweenDatesInDa
 import Modal from '../../components/Modal';
 
 const Property = () => {
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
   const [slideNumber, setSlideNumber] = useState(0);
   const [isSlideOpen, setIsSlideOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +42,7 @@ const Property = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-      
+    dispatch(setLocationID(id));
     dispatch(getProperty(id));
     try{
       const getRooms =  async () => {
@@ -61,12 +64,15 @@ const Property = () => {
   };
 
  function closeSlider(e){
- 
+  console.log(user)
+
   setIsSlideOpen(false);
   e.stopPropagation()
   e.nativeEvent.stopImmediatePropagation();
 
  }
+
+
  
 const {property, gallery} = propertybyID;
 
@@ -86,9 +92,16 @@ let myGallery = [].concat.apply([], gallery);
   const classes = ["a", "b", "c", "d", "e", "f"];
 
   const openModal = () => {
+     
     window.scrollTo(0, 0);
     document.body.classList.add('noScrolling');
     setIsModalOpen(true);
+  }
+
+  const goLogin = () => {
+    if(!user[0]?.username){
+      navigate('/login');
+    }
   }
 
   return (
@@ -139,7 +152,7 @@ let myGallery = [].concat.apply([], gallery);
               <div className="galleryHeaderRight">
                 <FavoriteBorderIcon className="icon" />
                 <ShareIcon className="icon" />
-                <button onClick={openModal} className="button">Reserve</button>
+                <button onClick={!user[0]?.username ? goLogin: openModal} className="button">Reserve</button>
               </div>
             </div>
             
@@ -242,7 +255,7 @@ let myGallery = [].concat.apply([], gallery);
               </div>
             </div>
             
-            <button onClick={openModal} className="button">Reserve</button>
+            <button onClick={!user[0]?.username ? goLogin : openModal} className="button">Reserve</button>
           </div>
         </div>
       </div>

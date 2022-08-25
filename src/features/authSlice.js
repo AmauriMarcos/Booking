@@ -8,13 +8,14 @@ const initialState = {
   error: null,
 };
 
+
 //USER REGISTER
 export const register = createAsyncThunk("auth/register", async (data) => {
   try {
     const response = await axios.post("http://localhost:8000/api/auth/register", data, { withCredentials: true} );
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
   }
 });
 
@@ -32,8 +33,8 @@ export const login = createAsyncThunk("auth/login", async(data) => {
     const res = await axios.post(`http://localhost:8000/api/auth/login`, data, config);
     console.log(res.data);
     return res.data;
-  }catch(err){
-    console.log(err.response.data.message);
+  }catch(error){
+    console.log(error.response.data.message);
   }
 });
 
@@ -48,15 +49,22 @@ export const getUser = createAsyncThunk("auth/getUser", async (id) => {
   try {
     const response = await axios.get(`http://localhost:8000/api/users/${id}`, config);
     return response.data;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error.response);
   }
 });
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout(state){
+      state.entities = [];
+      state.user = {};
+      state.loading = false;
+      state.error = null;
+    }
+  },
   extraReducers: {
     [register.pending]: (state) => {
       state.loading = true;
@@ -83,9 +91,10 @@ const authSlice = createSlice({
     [getUser.pending]: (state) => {
       state.loading = true;
     },
-    [getUser.fulfilled]: (state, { payload }) => {
+    [getUser.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.user = payload;
+    
     },
     [getUser.rejected]: (state) => {
       state.loading = false;
@@ -93,5 +102,5 @@ const authSlice = createSlice({
     },
   },
 });
-
+export const{logout} = authSlice.actions;
 export default authSlice.reducer;

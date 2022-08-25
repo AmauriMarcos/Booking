@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   entities: [],
+  locationID: null,
   checkIn: '',
   checkOut: '',
   options: [
@@ -30,6 +31,9 @@ const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
+    setLocationID(state, {payload}){
+      state.locationID = payload;
+    },
     handleDate(state, {payload}){
       console.log(payload)
       state.checkIn = payload.checkIn
@@ -67,6 +71,6 @@ const searchSlice = createSlice({
   }
 });
 
-export const { increment, decrement, handleDate, handlePriceAndDays } = searchSlice.actions;
+export const { increment, decrement, handleDate, handlePriceAndDays, setLocationID } = searchSlice.actions;
 export default searchSlice.reducer;
 

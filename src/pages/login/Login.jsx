@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Navbar from "../../components/navbar/Navbar";
 import { useDispatch, useSelector } from 'react-redux';
 import {login} from '../../features/authSlice';
 import '../../sass/pages/_login.scss';
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
-  
+  const navigate = useNavigate();
+  const locationID = useSelector((state) => state.search.locationID);
   const dispatch = useDispatch();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+
   
   const submit = (e) => {
     e.preventDefault();
@@ -16,8 +19,8 @@ const Login = () => {
       username,
       password
     }
-    console.log(data)
     dispatch(login(data));
+    navigate(`/properties/${locationID}`);
   }
 
   return (

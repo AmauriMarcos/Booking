@@ -10,7 +10,7 @@ const Featured = () => {
 
   useEffect(() => {
     dispatch(countByCity());
-  }, [dispatch]);
+  }, [dispatch, properties]);
 
   const selectedProperties = properties?.filter((property) => {
     return (

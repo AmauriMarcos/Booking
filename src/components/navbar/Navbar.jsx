@@ -2,12 +2,14 @@ import React, {useEffect} from "react";
 import "../../sass/layout/_navigation.scss";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import {Link} from 'react-router-dom';
-import { getUser } from "../../features/authSlice";
+import {Link, Navigate} from 'react-router-dom';
+import { getUser, logout } from "../../features/authSlice";
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = false;
   const user = useSelector((state) => state.auth.user);
   const auth = useSelector((state) => state.auth.entities);
@@ -19,8 +21,10 @@ const Navbar = () => {
     }
   }, [auth.user, dispatch]);
 
-  console.log(user);
- 
+ const handleLogout = () => {
+  dispatch(logout());
+  navigate('/');
+ }
   return (
     <div className="navbar">
       <nav className="navHeader">
@@ -75,13 +79,27 @@ const Navbar = () => {
               <span>List your property</span>
             </button>
 
-            <Link to="/register">
-              <button className="login-btn">Register</button>
-            </Link>
+            {!user[0]?.username && 
+              <>
+              <Link to="/register">
+                <button className="login-btn">Register</button>
+              </Link>
 
-            <Link to="/login">
-              <button className="login-btn">Sign In</button>
-            </Link>
+              <Link to="/login">
+                <button className="login-btn">Sign In</button>
+              </Link>
+              </>
+            }
+
+            {user[0]?.username &&
+            <>
+              <div className="userInfo">
+                <img className='avatar' src={user[0]?.avatar} alt="avatar"/>
+                <p>Hello, {user[0]?.username}</p>
+              </div>
+              <button className="login-btn" onClick={handleLogout}>Logout</button>
+            </>
+            }
           </div>
 
         </div>
