@@ -3,11 +3,18 @@ import "../sass/components/_modal.scss";
 import { useSelector, useDispatch } from "react-redux";
 import Reservation from "./reservation/Reservation";
 
+import { updateRoom } from './../features/roomSlice';
+
 function Modal({ setIsModalOpen, rooms }) {
+  const dispatch = useDispatch();
+  const roomNumberPicked = useSelector((state) => state.room.roomNumber);
+  const {checkIn, checkOut} = useSelector((state) => state.search);
+
   const closeModal = () => {
     document.body.classList.remove("noScrolling");
     setIsModalOpen(false);
   };
+
 
   const getRoomType = (roomsArr, type) => {
     const filtered = roomsArr?.filter((room) => {
@@ -20,6 +27,19 @@ function Modal({ setIsModalOpen, rooms }) {
   const deluxe = getRoomType(rooms, "Deluxe");
   const master = getRoomType(rooms, "Master");
   const standard = getRoomType(rooms, "Standard");
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const reservation = {
+      room: roomNumberPicked,
+      checkIn,
+      checkOut
+    }
+
+    dispatch(updateRoom(reservation));
+
+  }
 
   return (
     <div className="backgroundModal">
@@ -70,6 +90,7 @@ function Modal({ setIsModalOpen, rooms }) {
               ))}
             </div>
           </div>}
+          <button onClick={e => handleSubmit(e)} className="btn">Submit</button>
         </div>
       </div>
     </div>

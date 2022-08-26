@@ -16,8 +16,8 @@ const register = (req, res, next) => {
     
             res.send('A new user has been added successfully');
         })
-    }catch(err){
-        next(err);
+    }catch(error){
+        next(error);
     }
    
 }

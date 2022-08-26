@@ -32,7 +32,7 @@ const login = (req, res, next) => {
     if(!isPasswordCorrect) return next(createError(400, 'Password or username invalid.'));
 
     //destructuring user data from database
-    const {id, userPassword, isAdmin, ...otherDetails} = user[0];
+    const {id, isAdmin} = user[0];
 
     //Creating my JWT
     const payload = {

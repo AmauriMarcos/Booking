@@ -12,11 +12,11 @@ const CardProperty = ({ property, days }) => {
   const dispatch = useDispatch();
   days = days >= 1 ? days : 1;
   const options = useSelector((state) => state.search.options)
-
+  const propertyPrice = property.price;
   const data = useMemo(() => ({
-    price: property.price,
+    price: +propertyPrice,
     days: days
-  }), [property.price, days])
+  }), [propertyPrice, days])
 
   
   useEffect(() => {

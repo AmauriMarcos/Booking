@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from '../features/searchSlice';
 import propertyReducer from '../features/propertySlice';
+import roomReducer from '../features/roomSlice';
 import infoReducer from '../features/infoSlice';
 import authReducer from '../features/authSlice';
 import {
@@ -27,7 +28,8 @@ import {
 export const store = configureStore({
     reducer: {
         search: searchReducer,
-        property: propertyReducer,  
+        property: propertyReducer, 
+        room: roomReducer,   
         auth: persistedReducer, 
         info: infoReducer,
     },

@@ -52,7 +52,10 @@ const searchSlice = createSlice({
       });
     },
     handlePriceAndDays(state, {payload}){
-      state.price = payload.price * payload.days;
+      console.log(payload);
+      const currentPrice = +payload.price
+      const resultPrice =  currentPrice * payload.days
+      state.price = resultPrice;
       state.days = payload.days;
     }
   },

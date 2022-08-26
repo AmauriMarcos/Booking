@@ -100,6 +100,8 @@
                 margin-bottom: 1rem;
                 @include center-vertical;
                 justify-content: space-between;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                font-weight: 600;
 
                 .form{
                     width: 100%;
@@ -117,7 +119,7 @@
 
             .standard{
                 background-color: #648CAC;
-            }
+            } 
         }
 
         

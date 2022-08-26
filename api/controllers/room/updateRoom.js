@@ -1,7 +1,7 @@
 import db from "../../config/mysql.js";
 
 const updateRoom = (req, res, next) => {
-  const id = req.params.id;
+  console.log(req.params.id);
   const {
     room,
     roomType,
@@ -13,18 +13,16 @@ const updateRoom = (req, res, next) => {
     hotelID,
     price,
   } = req.body;
-  const q = `UPDATE rooms(room, roomType, maxPeople, 
-                          includes, shortDescription, checkIn, 
-                          checkOut,hotelID, price) 
-             SET room=${room}, roomTypes="${roomType}", maxPeople=${maxPeople}, 
-                 includes="${includes}", shortDescription="${shortDescription}", ckeckIn="${checkIn}", 
-                 checkOut="${checkOut}", hotelID="${hotelID}, price=${price}
-             WHERE id=${id}`;
+
+  console.log(room, checkIn, checkOut);
+
+  const q = `UPDATE rooms SET ckeckIn="${checkIn}", checkOut="${checkOut}"
+             WHERE room=${room}`;
   db.query(q, (err, result) => {
     if (err) {
       next(err);
     }
-
+    console.log(result)
     res.send(result);
   });
 };

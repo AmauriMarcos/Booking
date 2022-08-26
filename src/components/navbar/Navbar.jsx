@@ -2,10 +2,9 @@ import React, {useEffect} from "react";
 import "../../sass/layout/_navigation.scss";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import {Link, Navigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { getUser, logout } from "../../features/authSlice";
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -81,13 +80,13 @@ const Navbar = () => {
 
             {!user[0]?.username && 
               <>
-              <Link to="/register">
-                <button className="login-btn">Register</button>
-              </Link>
+                <Link to="/register">
+                  <button className="login-btn">Register</button>
+                </Link>
 
-              <Link to="/login">
-                <button className="login-btn">Sign In</button>
-              </Link>
+                <Link to="/login">
+                  <button className="login-btn">Sign In</button>
+                </Link>
               </>
             }
 

@@ -4,7 +4,7 @@ import getRoomById from '../controllers/room/getRoomById.js';
 import createRoom from '../controllers/room/createRoom.js';
 import updateRoom from '../controllers/room/updateRoom.js';
 import deleteRoom from '../controllers/room/deleteRoom.js';
-import { verifyAdmin } from './../utils/verifyToken.js';
+import { verifyAdmin, verifyUser } from './../utils/verifyToken.js';
 const router = express.Router();
 
 
@@ -18,7 +18,7 @@ const router = express.Router();
     router.get("/:id",  getRoomById);
 
 //UPDATE
-    router.put("/:id", verifyAdmin, updateRoom);
+    router.put("/:id",  updateRoom);
 
 //DELETE
     router.delete("/:id", verifyAdmin,deleteRoom);
