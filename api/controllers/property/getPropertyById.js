@@ -3,6 +3,7 @@ import db from '../../config/mysql.js';
 const getPropertyByID = (req, res, next) => {
   let arrayGallery = [];
   const id = req.params.id;
+
   const galleryQuery = ` SELECT imageURL FROM gallery
                          WHERE hotelID=${id};`;
   

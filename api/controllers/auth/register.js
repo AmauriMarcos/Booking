@@ -2,6 +2,7 @@ import db from '../../config/mysql.js';
 import bcrypt from 'bcryptjs';
 
 const register = (req, res, next) => {
+
     const {username, email, password, isAdmin, avatar} = req.body;
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(password, salt);
@@ -18,7 +19,7 @@ const register = (req, res, next) => {
         })
     }catch(error){
         next(error);
-    }
+    } 
    
 }
 

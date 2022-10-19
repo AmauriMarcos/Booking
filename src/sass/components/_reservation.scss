@@ -2,11 +2,59 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .7rem;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+
+    
+
+    .wrapperPrice{
+       
+        p{
+            font-size: 1.3rem;
+            width: 70px;
+            font-weight: bold;
+        }
+    }
+
+    .reservationBloc{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+
+        .wrapperTypes{
+
+            .deluxe{
+                color: #EEC46B !important;
+            }
+
+            .master{
+                color: #1C5B81 !important;
+            }
+
+            .standard{
+                color: #648CAC !important;
+            }
+        }
+    }
+
+    .wrapperRoomChecker{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }    
+
+    .includes{
+        font-size: 1.1rem;
+        color: rgb(180, 180, 180);
+
+    }
 
     .number{
-        font-size: 2.5rem;
-        color: rgb(33, 33, 33);     
+        font-size: 1.7rem;
+        color: #429C42;     
     }
 
     .unavailable{

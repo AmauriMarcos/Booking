@@ -14,11 +14,11 @@ const Featured = () => {
 
   const selectedProperties = properties?.filter((property) => {
     return (
-      property.location === "Hawaii" ||
-      property.location === "Tokyo" ||
-      property.location === "New York" ||
-      property.location === "San Francisco" ||
-      property.location === "Paris"
+      property?.location === "Hawaii" ||
+      property?.location === "Tokyo" ||
+      property?.location === "New York" ||
+      property?.location === "San Francisco" ||
+      property?.location === "Paris"
     );
   });
   const arr = [2, 3, 4, 0, 1];
@@ -42,8 +42,8 @@ const Featured = () => {
     <div className="featured">
       {displayProperties?.map((property, i) => {
         return (
-          <Link to={`/properties/search/${property.location}`} className={classes[i]} key={property?.location}>
-            <div className={`featuredItem `}>
+          <Link to={`/properties/search/${property?.location}`} className={classes[i]}>
+            <div className={`featuredItem`} key={property?.location}>
               <img
                 className="featuredItem__img"
                 src={property?.url}

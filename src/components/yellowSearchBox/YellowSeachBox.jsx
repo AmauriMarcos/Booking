@@ -30,7 +30,6 @@ const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type, location}) => {
   let currentStartDate = date[0]?.startDate;
   let currentEndDate = date[0]?.endDate;
 
-
     const dates = useMemo(() => ({
     checkIn: currentStartDate,
     checkOut: currentEndDate
@@ -41,7 +40,7 @@ const YellowSeachBox = ({isOptionsOpen, setIsOptionsOpen, type, location}) => {
        dispatch(handleDate(dates))
       }
  
-  }, [dispatch, currentStartDate, currentEndDate, dates]) 
+  }, [dispatch, currentStartDate, currentEndDate, dates]); 
 
   return (
     <div className={type === "hotel" ? "listSearch noSticky" : "listSearch"}>

@@ -11,6 +11,13 @@ const initialState = {
 //This will handle the checkIn and checkOut using the number Room
 //picked by the user
 
+const config = {
+  headers: {
+    "Content-Type": "application/json"
+    },
+    withCredentials: true
+  }
+
 export const updateRoom = createAsyncThunk(
   "room/updateRoom",
   async (reservation) => {
@@ -18,7 +25,10 @@ export const updateRoom = createAsyncThunk(
     console.log(reservation);
     try {
       const res = await axios.put(
-        `http://localhost:8000/api/rooms/${room}, ${reservation}`
+        `http://localhost:8000/api/rooms/${room}`, {
+          data: reservation
+        },
+        config
       );
       console.log(res.data);
       return res.data;

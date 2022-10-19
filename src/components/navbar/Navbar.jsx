@@ -24,13 +24,14 @@ const Navbar = () => {
   dispatch(logout());
   navigate('/');
  }
+
   return (
     <div className="navbar">
       <nav className="navHeader">
         <Link to="/">
           <span className="logo">Booking.com</span>
         </Link>
-        
+       
 
         <div className="group">
 

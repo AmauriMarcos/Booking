@@ -27,15 +27,13 @@ const SearchBar = () => {
     },
   ]);
 
+
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
-
 
   let currentStartDate = date[0]?.startDate;
   let currentEndDate = date[0]?.endDate;
 
-/*   const checkIn = changeDateFormat(currentStartDate);
-  const checkOut = changeDateFormat(currentEndDate); */
 
   const dates = {
     checkIn: currentStartDate,

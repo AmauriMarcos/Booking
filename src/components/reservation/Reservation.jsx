@@ -18,18 +18,39 @@ const Reservation = ({room}) => {
    
   }, [dispatch, roomNumber]);
 
+  let myRoomColor = '';
+  if(room.roomType === 'Deluxe room') {
+    myRoomColor = 'deluxe';
+  }else if(room.roomType === 'Master Executive Room'){
+    myRoomColor = 'master'
+  }else if(room.roomType === 'Standard room'){
+    myRoomColor = 'standard'
+  }
+
   return (
     <div className='wrapperRoom'>
-       <p className={`number ${room.checkIn ? "unavailable" : "" }`}>{room.room}</p>
-       <div onChange={onChangeValue}>
-          <input 
-            className={`input ${room.checkIn ? "unavailable" : "" }`} 
-            type="radio" 
-            disabled={ room.checkIn  ? true : false}
-            value={room.room}
-            name="room"
-          />
-       </div>       
+      <div className="reservationBloc">
+        <div className="wrapperTypes">
+            <p className={myRoomColor}>{room.roomType}</p>
+            <p className="includes">{room.includes}</p>
+        </div>
+        
+        <div className="wrapperPrice">
+            <p className={myRoomColor}>&euro; {room.price}</p>
+        </div>
+        
+        <div onChange={onChangeValue} className='wrapperRoomChecker'>
+            <p className={`number ${room.checkIn ? "unavailable" : "" }`}>{room.room}</p>
+            <input 
+              className={`input ${room.checkIn ? "unavailable" : "" }`} 
+              type="radio" 
+              disabled={ room.checkIn  ? true : false}
+              value={room.room}
+              name="room"
+            />
+        </div> 
+      </div>
+             
     </div>
   )
 }

@@ -12,7 +12,7 @@ const initialState = {
 //USER REGISTER
 export const register = createAsyncThunk("auth/register", async (data) => {
   try {
-    const response = await axios.post("http://localhost:8000/api/auth/register", data, { withCredentials: true} );
+    const response = await axios.post("http://localhost:8000/api/auth/register", data, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -20,45 +20,50 @@ export const register = createAsyncThunk("auth/register", async (data) => {
 });
 
 //USER LOGIN
-export const login = createAsyncThunk("auth/login", async(data) => {
-  
+export const login = createAsyncThunk("auth/login", async (data) => {
+
   const config = {
     headers: {
       "Content-Type": "application/json"
-      },
-      withCredentials: true
-    }
+    },
+    withCredentials: true
+  }
 
-  try{
+  try {
     const res = await axios.post(`http://localhost:8000/api/auth/login`, data, config);
-    console.log(res.data);
+
     return res.data;
-  }catch(error){
-    console.log(error.response.data.message);
+  } catch (error) {
+    console.log(error.response);
   }
 });
 
 //GET USER
-export const getUser = createAsyncThunk("auth/getUser", async (id) => {
+export const getUser = createAsyncThunk("auth/getUser", async (id, { rejectWithValue }) => {
   const config = {
     headers: {
       "Content-Type": "application/json"
-      },
-      withCredentials: true
-    }
+    },
+    withCredentials: true
+  }
+
+
   try {
     const response = await axios.get(`http://localhost:8000/api/users/${id}`, config);
     return response.data;
-  } catch (error) {
-    console.log(error.response);
+  } catch (err) {
+    console.log(err.response.data)
+    return rejectWithValue(err.response.data)
   }
+
+
 });
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout(state){
+    logout(state) {
       state.entities = [];
       state.user = {};
       state.loading = false;
@@ -91,10 +96,10 @@ const authSlice = createSlice({
     [getUser.pending]: (state) => {
       state.loading = true;
     },
-    [getUser.fulfilled]: (state, {payload}) => {
+    [getUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.user = payload;
-    
+
     },
     [getUser.rejected]: (state) => {
       state.loading = false;
@@ -102,5 +107,6 @@ const authSlice = createSlice({
     },
   },
 });
-export const{logout} = authSlice.actions;
+
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -12,7 +12,11 @@ const countByType = (req, res, next)=> {
             next(err);
         }
 
-        res.send(result);
+        if(result){
+            res.send(result);
+        }else{
+            res.send("Something went wrong on CountByCity")
+        }
     })
 }
 

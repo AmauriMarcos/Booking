@@ -20,35 +20,43 @@ const login = (req, res, next) => {
 
   db.query(q, (err, user) => {
     //Send an error message if user is not found
-    if(user.length === 0) return next(createError(404, 'User not found'));
+    if(user?.length === 0) return next(createError(404, 'User not found'));
     if (err) {
       next(err);
     }
     //get hash password from database 
-    const hash = user[0].userPassword;
+    const hash = user[0]?.userPassword;
     //comparing hash against user password
     const isPasswordCorrect = bcrypt.compareSync(password, hash);
     //Send an error message if password or username are incorrect
     if(!isPasswordCorrect) return next(createError(400, 'Password or username invalid.'));
 
     //destructuring user data from database
-    const {id, isAdmin} = user[0];
+    const {id, isAdmin, username, email, avatar} = user[0];
 
     //Creating my JWT
     const payload = {
-        id,
-        isAdmin
+      id,
+      isAdmin,
+      username, 
+      email, 
+      avatar
     }
+    
     const token = jwt.sign(payload,process.env.JWT_SECRET);
 
     let options = {
-        httpOnly: true, // The cookie only accessible by the web server
-        secure: false
+      httpOnly: true, // The cookie only accessible by the web server
+      secure: false
     }
 
-    res.cookie("access_token", token, options).status(200).json({
+    res.cookie("access_token", token, options).send({
       message: "User successfully logged in",
       user: id,
+      isAdmin,
+      username, 
+      email, 
+      avatar
     });
 
   });

@@ -12,7 +12,6 @@ const Login = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  
   const submit = (e) => {
     e.preventDefault();
     const data = {

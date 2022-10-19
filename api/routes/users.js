@@ -1,6 +1,7 @@
 import express from 'express';
 import getUser from '../controllers/user/getUser.js';
 import getUserById from '../controllers/user/getUserById.js';
+import getSelectedUser from '../controllers/user/getSelectedUser.js';
 import editUser from '../controllers/user/editUser.js';
 import deleteUser from '../controllers/user/deleteUser.js';
 import { verifyToken, verifyUser, verifyAdmin } from './../utils/verifyToken.js';
@@ -20,15 +21,19 @@ router.get('/checkadmin/:id', verifyAdmin, (req, res, next) => {
 }); */
 
 //Get 
-router.get('/', verifyAdmin, getUser);
+router.get('/', getUser);
 
-//Get by Id
-router.get('/:id', verifyUser,getUserById);
+
+//Get authenticated user by Id
+router.get('/:id', verifyAdmin, getUserById);
+
+//Get specific user by id
+router.get('/view/:id', getSelectedUser);
 
 //Update
 router.put('/:id', verifyUser, editUser);
 
 //Delete
-router.delete('/:id', verifyUser,deleteUser);
+router.delete('/:id', deleteUser);
 
 export default router;

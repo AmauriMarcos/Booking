@@ -92,7 +92,6 @@ let myGallery = [].concat.apply([], gallery);
   const classes = ["a", "b", "c", "d", "e", "f"];
 
   const openModal = () => {
-     
     window.scrollTo(0, 0);
     document.body.classList.add('noScrolling');
     setIsModalOpen(true);
