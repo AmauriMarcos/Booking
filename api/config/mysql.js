@@ -13,10 +13,10 @@ dotenv.config({ path: __dirname + "/./../../.env" });
 
 
 const db = mysql.createConnection({
-  host: "mysql-db.ctagtludrbj3.eu-central-1.rds.amazonaws.com",
-  user: "amauri",
+  host: "44.208.25.59",
+  user: "amaurists",
   password: process.env.MYSQL_PASSWORD,
-  database: "cloud337",
+  database: "Booking",
   insecureAuth: true,
 });
 
