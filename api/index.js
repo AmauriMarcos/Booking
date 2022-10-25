@@ -6,7 +6,7 @@ import roomsRoute from './routes/rooms.js';
 import infoRoute from './routes/info.js';
 import usersRoute from './routes/users.js'
 import cors from 'cors';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = 8000;

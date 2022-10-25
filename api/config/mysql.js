@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: __dirname + "/./../../.env" });
 
 const db = mysql.createConnection({
-  host: "ec2-44-208-25-59.compute-1.amazonaws.com",
+  host: "44.208.25.59",
   port: '3306',
   user: "amaurists",
   password: process.env.MYSQL_PASSWORD,
