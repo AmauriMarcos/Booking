@@ -11,12 +11,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: __dirname + "/./../../.env" });
 
+/* host: "44.208.25.59",
+port: '3306',
+user: "amaurists",
+password: process.env.MYSQL_PASSWORD,
+database: "booking",
+insecureAuth: true, */
+
 const db = mysql.createConnection({
-  host: "44.208.25.59",
+  host: "bookingdb.cgdjpjrqetvz.us-east-1.rds.amazonaws.com",
   port: '3306',
-  user: "amaurists",
+  user: "amaurisantos",
   password: process.env.MYSQL_PASSWORD,
-  database: "booking",
+  database: "my_booking_db",
   insecureAuth: true,
 });
 
