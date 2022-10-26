@@ -13,7 +13,6 @@ const createRoom = (req, res, next) => {
     price,
   } = req.body;
 
-  //Using the hotel name to get its id
   const query = `SELECT id FROM hotels WHERE hotelName="${hotelName}"`;
 
   db.query(query, (err, result) => {
@@ -21,7 +20,7 @@ const createRoom = (req, res, next) => {
       next(err);
     }
     const hotelID = result[0]?.id;
-    //Now that I have a hotel id I can relate my room to that specific hotel
+
     const q = `INSERT INTO rooms(room, roomType, maxPeople, 
                            includes, shortDescription, checkIn, 
                            checkOut,hotelID, price) 

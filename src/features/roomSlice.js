@@ -8,8 +8,6 @@ const initialState = {
   error: null,
 };
 
-//This will handle the checkIn and checkOut using the number Room
-//picked by the user
 
 const config = {
   headers: {

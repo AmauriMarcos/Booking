@@ -11,28 +11,27 @@ import { verifyAdmin } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-//Get
+
 router.get("/", getProperty);
 
-//Get all properties
 router.get("/all", getAllProperties);
 
-//Get by location
+
 router.get("/search/:search", searchProperty);
 
-//Get by ID
+
 router.get("/:id", getPropertyByID);
 
-//Get specific property by id
+
 router.get('/view/:id', getSelectedProperty);
 
-//Create
+
 router.post("/", verifyAdmin, createProperty);
 
-//Update
+
 router.put("/:id", verifyAdmin, updateProperty);
 
-//Delete
+
 router.delete("/:id", verifyAdmin,  deleteProperty);
 
 

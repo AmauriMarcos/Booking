@@ -9,7 +9,6 @@ const initialState = {
 };
 
 
-//USER REGISTER
 export const register = createAsyncThunk("auth/register", async (data) => {
   try {
     const response = await axios.post("http://localhost:8000/api/auth/register", data, { withCredentials: true });
@@ -19,7 +18,7 @@ export const register = createAsyncThunk("auth/register", async (data) => {
   }
 });
 
-//USER LOGIN
+
 export const login = createAsyncThunk("auth/login", async (data) => {
 
   const config = {
@@ -38,7 +37,7 @@ export const login = createAsyncThunk("auth/login", async (data) => {
   }
 });
 
-//GET USER
+
 export const getUser = createAsyncThunk("auth/getUser", async (id, { rejectWithValue }) => {
   const config = {
     headers: {

@@ -8,7 +8,7 @@ const initialState = {
   error: '',
 };
 
-//Create 
+
 export const createProperty = createAsyncThunk("properties/createProperty", async (data) => {
   try {
     const response = await axios.post("http://localhost:8000/api/properties", data );
@@ -18,7 +18,7 @@ export const createProperty = createAsyncThunk("properties/createProperty", asyn
   }
 });
 
-//Get 
+
 export const getProperty= createAsyncThunk("properties/getProperty", async (id) => {
   try{
     const res = await axios.get(`http://localhost:8000/api/properties/${id}`);
@@ -28,7 +28,7 @@ export const getProperty= createAsyncThunk("properties/getProperty", async (id) 
   }
 })
 
-//Get all 
+
 export const getAllProperties = createAsyncThunk("properties/getAllProperties", async () => {
 
   try{
@@ -44,7 +44,7 @@ const propertySlice = createSlice({
   initialState,
   reducers: {},
   extraReducers:  {
-      //Create 
+    
       [createProperty.pending]: (state) => {
           state.loading = true
       },
@@ -56,7 +56,7 @@ const propertySlice = createSlice({
         state.loading = false;
         state.error = state.error.message;
       },
-      //Get 
+      
       [getProperty.pending]: (state) => {
         state.loading = true
       },
@@ -68,7 +68,7 @@ const propertySlice = createSlice({
         state.loading = false;
         state.error = state.error.message;
       },
-      //Get all 
+      
       [getAllProperties.pending]: (state) => {
         state.loading = true
       },

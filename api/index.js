@@ -13,16 +13,16 @@ const PORT = 8000;
 
 const corsOptions ={
   origin:'http://localhost:3000', 
-  credentials:true,            //access-control-allow-credentials:true
+  credentials:true,          
   optionSuccessStatus:200,
 }
 
 app.use(cors(corsOptions));
 
-// Parse URL-encoded bodies (as sent by HTML forms)
+
 app.use(express.urlencoded());
 
-// Parse JSON bodies (as sent by API clients)
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -30,7 +30,6 @@ app.get("/", (req, res) => {
 });
 
 
-//middlewares
 app.use(cookieParser());
 app.use('/api/auth', authRoute);
 app.use('/api/info', infoRoute);

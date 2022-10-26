@@ -16,9 +16,7 @@ const OptionsBox = ({ type }) => {
               <div className="optionItem" key={option.id}>
                 <span>{option.name}</span>
                 <div className="optionSelect">
-                  {/* Conditionally renders button according to type of option */}
-                  {/* When the option type is children I want it to render a specific logic */}
-
+              
                   {option.name === "children" ? (
                     <button
                       onClick={() => dispatch(decrement(option.id))}

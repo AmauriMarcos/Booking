@@ -1,4 +1,4 @@
-/* Title and subtitles */
+
 @mixin title($size) {
   font-size: $size;
   color: $dark;
@@ -12,7 +12,7 @@
   margin-bottom: $margin;
 }
 
-/* Buttons */
+
 
 @mixin propertyButton() {
   border: 0.1rem solid $light;
@@ -29,7 +29,6 @@
   }
 }
 
-/* Badges*/
 
 @mixin smallGreenBadge() {
   background-color: #008009;
@@ -55,7 +54,7 @@
   height: 1.45rem;
 }
 
-/*Rating*/
+
 
 @mixin starsBox() {
   color: $dark;

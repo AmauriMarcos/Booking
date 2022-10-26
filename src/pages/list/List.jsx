@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./../../components/navbar/Navbar";
 import Header from "./../../components/header/Header";
 import "../../sass/pages/_list.scss";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css"; 
+import "react-date-range/dist/theme/default.css"; 
 import YellowSearchBox from '../../components/yellowSearchBox/YellowSeachBox';
 import {useSelector, useDispatch} from 'react-redux';
 import CardProperty from "../../components/cardProperty/CardProperty";

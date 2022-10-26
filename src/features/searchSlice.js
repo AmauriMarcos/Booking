@@ -17,7 +17,6 @@ const initialState = {
   error: null,
 };
 
-//Get properties by location 
 export const getPropertiesByLocation = createAsyncThunk("search/getPropertiesByLocation", async (location) => {
   try{
       const res = await axios.get(`http://localhost:8000/api/properties/search/${location}`);

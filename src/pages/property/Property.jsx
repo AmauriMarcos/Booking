@@ -77,8 +77,6 @@ const Property = () => {
 const {property, gallery} = propertybyID;
 
 
-/* let days = differenceBetweenDatesInDays(checkIn, checkOut); */
-
 let myGallery = [].concat.apply([], gallery);
 
  let lastIndex = myGallery?.length -1; 

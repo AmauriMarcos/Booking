@@ -4,8 +4,8 @@ import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css"; 
+import "react-date-range/dist/theme/default.css"; 
 import { format } from "date-fns";
 import OptionsBox from "../optionsBox/OptionsBox";
 import {useSelector, useDispatch} from 'react-redux';
@@ -63,7 +63,6 @@ const SearchBar = () => {
           onChange={(e) => setLocation(e.target.value)}
         />
     
-{/*         {error && <div><p>{error}</p></div> } */}
       </div>
       
       <div className="searchBarItem">
