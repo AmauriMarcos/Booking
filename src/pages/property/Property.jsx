@@ -194,7 +194,7 @@ let myGallery = [].concat.apply([], gallery);
               </p>
               <p className="infoPropertyText">
                 Coolangatta (Gold Coast) Airport is a 50-minute drive from
-                Gosamara Apartments. Cape Byron Lighthouse is 8 minutes’ drive
+                Gosamara Apartments. Cape Byron Lighthouse is 8 minutes  drive
                 away. The famous Byron Bay Markets are just 2 minutes away by
                 car.
               </p>

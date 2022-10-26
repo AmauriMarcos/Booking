@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import {countByCity} from '../../features/infoSlice';
 import {useSelector,useDispatch} from 'react-redux';
 
-
 const Explore = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
