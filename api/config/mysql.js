@@ -23,7 +23,7 @@ const db = mysql.createConnection({
   port: '3306',
   user: "amaurisantos",
   password: process.env.MYSQL_PASSWORD,
-  database: "my_booking_db",
+  database: "booking",
   insecureAuth: true,
 });
 
